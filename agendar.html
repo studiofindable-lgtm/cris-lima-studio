@@ -91,15 +91,16 @@
             <label>Seu WhatsApp (opcional)<input type="tel" name="fone" autocomplete="tel" inputmode="tel" placeholder="(41) 90000-0000"></label>
             <label>Observação (opcional)<textarea name="obs" rows="3" placeholder="Ex.: quero levar uma foto de referência"></textarea></label>
             <label class="check"><input type="checkbox" name="politica" required><span>Li e concordo com a <a href="#politica">política de agendamento</a>, incluindo a reserva de 30% do valor.</span></label>
-            <div class="btns"><button class="btn btn-gold" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Enviar pelo WhatsApp</button></div>
+            <p class="bk-err" role="alert" hidden></p>
+            <div class="btns"><button class="btn btn-gold" type="submit" id="bk-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Confirmar agendamento</button></div>
           </form>
         </section>
         <section class="bk-panel bk-done" data-panel="4" hidden>
           <div class="ok">✓</div>
-          <h3 tabindex="-1">Solicitação pronta!</h3>
-          <p>Abrimos o WhatsApp com a sua mensagem. É só tocar em enviar. Assim que confirmarmos, o horário é seu.</p>
+          <h3 tabindex="-1" id="bk-done-title">Horário reservado!</h3>
+          <p id="bk-done-text">Agora envie a mensagem no WhatsApp para a gente confirmar.</p>
           <div class="btns" style="justify-content:center">
-            <a class="btn btn-gold" id="bk-again" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Abrir o WhatsApp de novo</a>
+            <a class="btn btn-gold" id="bk-again" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Enviar no WhatsApp</a>
             <button class="btn btn-line" type="button" id="bk-new">Fazer outro agendamento</button>
           </div>
         </section>

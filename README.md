@@ -28,15 +28,35 @@ Site completo do **Cris Lima Studio** (especialista em loiros, cabelo, unhas, c�
 
 No GitHub, dá para editar direto pelo navegador: abra o arquivo, clique no lápis (✏️) e salve com **Commit changes**. O site se atualiza em cerca de 1 minuto.
 
-## Como funciona o agendamento online
+## Agenda automática
 
 1. A cliente escolhe um ou mais serviços. O tempo e o valor somam na hora.
-2. A agenda mostra os próximos 30 dias e só os horários em que o atendimento inteiro cabe dentro do expediente.
-3. Ao confirmar, o WhatsApp abre com a mensagem pronta (serviços, data, horário, duração, valor e nome).
+2. A agenda mostra os próximos 30 dias e só os horários em que o atendimento inteiro cabe no expediente **e não bate com nenhum horário já ocupado**.
+3. Ao confirmar, o horário fica reservado no sistema (status *pendente*) e a cliente envia a mensagem pronta no WhatsApp.
+4. Se duas clientes escolherem o mesmo horário ao mesmo tempo, o banco aceita só a primeira. A segunda é avisada e escolhe outro horário.
 
 Os links das páginas de serviço já chegam com o serviço marcado, por exemplo `agendar.html?s=truck`.
 
-**Próxima etapa (agenda automática):** para bloquear sozinho os horários já ocupados, é preciso ligar a agenda a um banco de dados (por exemplo, Supabase ou Google Agenda).
+**Agendas em paralelo:** cada categoria ocupa uma agenda (`cabelo`, `unhas`, `beleza`, definido em `js/dados.js`). Uma cliente de unhas pode ser atendida no mesmo horário que uma de cabelo. Se o studio tiver uma profissional só, coloque a mesma agenda em todas as categorias.
+
+**Banco:** Supabase (projeto da agência). As tabelas usam o prefixo `cl_` e estão documentadas em `supabase/schema.sql`. O site só consegue ver os intervalos ocupados (sem nomes) e pedir horários; o resto exige login no painel.
+
+## Painel do studio
+
+Endereço: `painel.html` (fora do menu e escondido do Google).
+
+- **Agenda do dia**, separada por agenda, com Confirmar, Cancelar, Concluído e um botão de WhatsApp com a confirmação pronta para a cliente.
+- **Pedidos pendentes** de todos os dias.
+- **Bloquear horário** para folga, almoço ou cliente que marcou por telefone. O horário some do site na hora.
+
+**Dar acesso a alguém:**
+1. No Supabase, vá em **Authentication → Users → Add user** e crie o usuário com e-mail e senha.
+2. Rode no SQL Editor (trocando o e-mail):
+   ```sql
+   insert into public.cl_admins (user_id)
+   select id from auth.users where email = 'email-da-cris@exemplo.com';
+   ```
+Quem entra no painel sem estar nessa lista vê a mensagem "Usuário sem permissão".
 
 ## Domínio próprio
 

@@ -405,6 +405,9 @@ p{margin:0 0 1em}
 .bk-done .ok{width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:var(--rg);display:grid;place-items:center;font-size:32px;color:#2e1c1a}
 .bk-back{background:none;border:0;cursor:pointer;color:var(--gold-d);font-size:15px;letter-spacing:.04em;padding:8px 0}
 .bk-warn{margin-top:14px;font-size:14px;color:var(--mute)}
+.bk-err{margin:0 0 6px;padding:14px 16px;border-radius:14px;background:#fbe9e7;border:1px solid #efc3bd;color:#8a3b2f;font-size:15px}
+.bk-err[hidden]{display:none}
+.bk-done p{max-width:52ch;margin-left:auto;margin-right:auto;color:var(--mute)}
 .ways{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-bottom:40px}
 .way{padding:28px;border-radius:var(--r);border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;gap:10px}
 .way.main{background:var(--blush);border-color:var(--blush-2)}
