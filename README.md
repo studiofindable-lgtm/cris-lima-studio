@@ -26,6 +26,7 @@ Site completo do **Cris Lima Studio** (especialista em loiros, cabelo, unhas, c�
 - **Fotos:** ficam em `img/` (em `.webp`): `trabalho-*` são os trabalhos da galeria, `studio-*` são as fotos do espaço (tiradas do vídeo de tour) e `antes-*` / `depois-*` formam o antes e depois.
 - **Vídeos:** ficam em `video/` (`.mp4` sem som). Eles só tocam quando aparecem na tela, para não gastar a internet de quem abre o site pelo celular.
 - **Visual (cores e fontes):** `css/style.css`.
+- **Página inicial em telas:** no computador cada seção do início ocupa exatamente uma tela (no celular, uma ou duas). Os ajustes ficam no fim de `css/style.css`, no bloco "Início: uma seção por tela". Ao mudar o texto ou as fotos do início, confira se a seção continua cabendo na tela.
 - **Movimento:** `assets/motion/` traz a entrada do topo e os efeitos ao passar o mouse (camada da taste-skill, licença MIT em `assets/motion/LICENSE`). Não edite esses dois arquivos; ajuste o visual em `css/style.css`.
 
 No GitHub, dá para editar direto pelo navegador: abra o arquivo, clique no lápis (✏️) e salve com **Commit changes**. O site se atualiza em cerca de 1 minuto.

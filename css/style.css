@@ -481,3 +481,121 @@ main > :first-child{border-top:var(--head-h) solid transparent}
   .hero .arch::after{border-radius:16px}
   .hero .badge{display:none}
 }
+
+/* =====================================================================
+   Início: uma seção por tela (taste-skill, layout-v4 seção 2)
+   Cada seção tem a altura exata de 1 tela no computador (--h) e cresce
+   no celular (--hm telas no mínimo). O topo fixo cobre o começo de cada
+   seção, por isso o respiro de cima (--padt) é maior.
+   ===================================================================== */
+.home{--padt:120px;--padb:72px;--bar:0px}
+html:has(body.home){scroll-padding-top:0}
+.home main > section.sec,.home footer.closing{height:calc(var(--h,1) * 100svh);padding:var(--padt) 0 calc(var(--padb) + var(--bar))}
+.home main > section.sec > .wrap,.home footer.closing > .wrap{position:relative;z-index:1}
+.home .split{align-items:start}
+.home .sec-head.row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
+.home .sec-head.row .lead{margin-bottom:0}
+.home .tela-foto{margin:0;border-radius:var(--r);overflow:hidden;background:var(--blush-2);height:calc(100svh - var(--padt) - var(--padb));max-height:760px}
+.home .tela-foto img{width:100%;height:100%;object-fit:cover}
+.home .space-grid .sp{--ar:3/4}
+.home .space-grid .sp:first-child{--ar:auto}
+
+/* 3 passos */
+.passos{list-style:none;counter-reset:ps;margin:28px 0 32px;padding:0}
+.passos li{counter-increment:ps;display:grid;grid-template-columns:56px 1fr;column-gap:8px;padding:18px 0;border-top:1px solid var(--line)}
+.passos li:last-child{border-bottom:1px solid var(--line)}
+.passos li::before{content:"0" counter(ps);grid-row:span 2;font:italic 500 34px/1 var(--serif);color:var(--gold-d)}
+.passos b{font:500 24px/1.2 var(--serif)}
+.passos span{color:var(--mute)}
+
+/* serviços em lista */
+.svc-list{list-style:none;margin:26px 0 0;padding:0}
+.svc-list li{border-top:1px solid var(--line)}
+.svc-list li:last-child{border-bottom:1px solid var(--line)}
+.svc-list a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;padding:12px 0;text-decoration:none;color:var(--ink)}
+.svc-list a > span b{display:block;font:500 24px/1.15 var(--serif);transition:color .15s}
+.svc-list a > span small{display:block;font-size:14px;color:var(--mute)}
+.svc-list em{font-style:normal;font-size:13px;color:var(--mute);text-align:right;white-space:nowrap}
+.svc-list em b{display:block;font:500 22px/1.1 var(--serif);color:var(--gold-d)}
+@media (hover:hover) and (pointer:fine){.svc-list a:hover > span b{color:var(--gold-d)}}
+
+/* fechamento: chamada final + links numa tela */
+.home .foot.closing > .wrap{display:flex;flex-direction:column;gap:56px}
+.home .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.home .close h2{color:var(--ivory);margin-bottom:14px}
+.home .close h2 em{background:linear-gradient(135deg,#e7b9aa,#f6dccf 50%,#d59e8f);-webkit-background-clip:text;background-clip:text}
+.home .close p{color:#d6c3c3;max-width:52ch;margin:0 0 26px}
+.home .close .btn-line{color:var(--ivory);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+
+/* tablet: a seção cresce em vez de sobrepor */
+@media (min-width:640px) and (max-width:1023px){
+  .home main > section.sec,.home footer.closing{height:auto;min-height:calc(var(--h,1) * 100svh)}
+  .home .tela-foto{height:auto;max-height:none;aspect-ratio:4/3}
+  .home .foot-grid{grid-template-columns:1fr 1fr}
+}
+/* celular: no mínimo --hm telas, crescendo com o conteúdo */
+@media (max-width:639px){
+  .home{--padt:96px;--padb:48px;--bar:68px}
+  .home main > section.sec,.home footer.closing{height:auto;min-height:calc(var(--hm,var(--h,1)) * 100lvh)}
+  .home .tela-foto{height:auto;max-height:none;aspect-ratio:4/5}
+  .home .foot-grid{grid-template-columns:1fr 1fr}
+  .home .foot.closing{padding-bottom:calc(var(--padb) + var(--bar) + env(safe-area-inset-bottom,0px))}
+}
+/* celular: cada seção do início numa tela (ou duas no antes e depois) */
+@media (max-width:639px){
+  .home .hero{padding-bottom:12px}
+  .home .hero .arch{aspect-ratio:16/9}
+  #como-agendar .tela-foto,#servicos .tela-foto,#loiros .techs{display:none}
+  #servicos .svc-list a{min-height:56px;padding:8px 0}
+  #loiros .photo-stack figure{aspect-ratio:1/1}
+  #antes-e-depois{--hm:2}
+  #antes-e-depois .ba{aspect-ratio:6/7}
+  #o-studio .space-grid{order:2;grid-template-columns:repeat(3,1fr)}
+  #o-studio .space-grid .sp,#o-studio .space-grid .sp:first-child{grid-column:auto;grid-row:auto;--ar:3/4;min-height:0}
+  #blog .post-card{flex-direction:row}
+  #blog .post-card .thumb{flex:0 0 112px;aspect-ratio:auto}
+  #blog .post-card .body{padding:14px 16px}
+  #blog .post-card p{display:none}
+  #blog .post-card h3{font-size:21px;margin-bottom:0}
+  .home .foot.closing > .wrap{gap:32px}
+  .home .foot .tagline,.home .foot-grid > div:nth-child(2){display:none}
+  .home .foot-grid > :first-child{grid-column:1/-1}
+}
+@media (max-width:639px){
+  .passos li{padding:14px 0}
+  #blog .sec-head{margin-bottom:18px}
+  #blog .post-card .cat{display:none}
+  .home .close h2{font-size:34px}
+  .home .foot-grid{gap:20px}
+  .home .foot h3{margin:0 0 4px}
+  .home .foot .brand img{width:44px;height:44px}
+  .home .foot .legal{padding-top:16px;margin-top:0}
+  .home .foot .legal > span + span{display:none}
+}
+
+/* início: topo fixo por cima das seções (a tela inteira é a seção) */
+.home .top{position:fixed;left:0;right:0;margin-bottom:0}
+/* loiros: uma foto grande na altura da seção */
+@media (min-width:640px){
+  .home #loiros .photo-stack{grid-template-columns:1fr}
+  .home #loiros .photo-stack figure:nth-child(2){display:none}
+  .home #loiros .photo-stack figure:first-child{aspect-ratio:auto;height:calc(100svh - var(--padt) - var(--padb));max-height:760px}
+}
+@media (max-width:639px){
+  /* agenda e serviços: duas telas no celular, com a foto depois do texto */
+  #como-agendar,#servicos{--hm:2}
+  #como-agendar .tela-foto,#servicos .tela-foto{display:block}
+  #como-agendar .tela-foto{aspect-ratio:9/16}
+  #servicos .tela-foto{order:2;aspect-ratio:2/3}
+  /* blog: miniatura visível e o card inteiro é o link */
+  #blog .post-card .thumb{position:relative;min-height:96px}
+  #blog .post-card .thumb img{position:absolute;inset:0}
+  #blog .post-card .body .link{display:none}
+}
+/* linhas do container: em telas largas o conteúdo encosta nas bordas do .wrap */
+@media (min-width:1320px){.wrap{padding:0}}
+html:has(body.home){scroll-behavior:auto}
+.home .hero .wrap{align-items:start}
+.foot a{transition:none}
+@media (min-width:640px){.home .hero{padding-top:24px;padding-bottom:24px}}
+.home .split h2{margin-bottom:16px}
