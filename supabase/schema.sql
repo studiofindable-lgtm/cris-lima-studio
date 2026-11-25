@@ -3,7 +3,7 @@
 -- Todas as tabelas e funções usam o prefixo cl_ para conviver com outros
 -- sistemas no mesmo projeto Supabase.
 --
--- agendas       cada "cadeira" que atende em paralelo (cabelo, unhas, beleza)
+-- agendas       cada profissional que atende em paralelo (ids iguais aos de js/dados.js)
 -- agendamentos  pedidos feitos pelo site (pendente → confirmado → concluído)
 -- ocupacoes     intervalos ocupados em cada agenda; o banco impede dois
 --               horários sobrepostos na mesma agenda (constraint EXCLUDE)
@@ -22,9 +22,9 @@ create table public.cl_agendas (
   nome text not null
 );
 insert into public.cl_agendas (id, nome) values
-  ('cabelo', 'Cabelo'),
-  ('unhas',  'Unhas'),
-  ('beleza', 'Cílios, sobrancelhas e micropigmentação');
+  ('cris',  'Cris Lima'),
+  ('prof2', 'Profissional de unhas'),
+  ('prof3', 'Profissional de cílios e sobrancelhas');
 
 create table public.cl_agendamentos (
   id         uuid primary key default gen_random_uuid(),
@@ -39,6 +39,7 @@ create table public.cl_agendamentos (
   telefone   text,
   obs        text,
   origem     text not null default 'site',
+  sem_preferencia boolean not null default false,  -- cliente escolheu "sem preferência"
   status     text not null default 'pendente'
              check (status in ('pendente', 'confirmado', 'cancelado', 'concluido')),
   constraint cl_agendamentos_periodo_valido check (fim > inicio)
@@ -147,7 +148,8 @@ create or replace function public.cl_solicitar_agendamento(
   p_valor        numeric,
   p_nome         text,
   p_telefone     text default null,
-  p_obs          text default null
+  p_obs          text default null,
+  p_sem_preferencia boolean default false
 )
 returns uuid
 language plpgsql volatile security definer
@@ -185,9 +187,9 @@ begin
 
   v_fim := p_inicio + make_interval(mins => p_duracao_min);
 
-  insert into public.cl_agendamentos (inicio, fim, servicos, descricao, agendas, valor, nome, telefone, obs)
+  insert into public.cl_agendamentos (inicio, fim, servicos, descricao, agendas, valor, nome, telefone, obs, sem_preferencia)
   values (p_inicio, v_fim, p_servicos, p_descricao, p_agendas, p_valor,
-          btrim(p_nome), nullif(btrim(p_telefone), ''), nullif(btrim(p_obs), ''))
+          btrim(p_nome), nullif(btrim(p_telefone), ''), nullif(btrim(p_obs), ''), coalesce(p_sem_preferencia, false))
   returning id into v_id;
 
   for v_ag in select distinct x from unnest(p_agendas) x loop
@@ -203,9 +205,9 @@ end;
 $$;
 
 revoke execute on function public.cl_horarios_ocupados(timestamptz, timestamptz) from public;
-revoke execute on function public.cl_solicitar_agendamento(timestamptz, integer, text[], text, text[], numeric, text, text, text) from public;
+revoke execute on function public.cl_solicitar_agendamento(timestamptz, integer, text[], text, text[], numeric, text, text, text, boolean) from public;
 grant execute on function public.cl_horarios_ocupados(timestamptz, timestamptz) to anon, authenticated;
-grant execute on function public.cl_solicitar_agendamento(timestamptz, integer, text[], text, text[], numeric, text, text, text) to anon, authenticated;
+grant execute on function public.cl_solicitar_agendamento(timestamptz, integer, text[], text, text[], numeric, text, text, text, boolean) to anon, authenticated;
 revoke execute on function public.cl_eh_admin() from public, anon;
 grant execute on function public.cl_eh_admin() to authenticated;
 revoke execute on function public.cl_sincroniza_ocupacoes() from public, anon, authenticated;

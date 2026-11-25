@@ -37,7 +37,15 @@ No GitHub, dá para editar direto pelo navegador: abra o arquivo, clique no láp
 
 Os links das páginas de serviço já chegam com o serviço marcado, por exemplo `agendar.html?s=truck`.
 
-**Agendas em paralelo:** cada categoria ocupa uma agenda (`cabelo`, `unhas`, `beleza`, definido em `js/dados.js`). Uma cliente de unhas pode ser atendida no mesmo horário que uma de cabelo. Se o studio tiver uma profissional só, coloque a mesma agenda em todas as categorias.
+**Profissionais:** cada profissional tem a própria agenda e atende as categorias listadas em `profissionais` no `js/dados.js`. Na agenda online a cliente escolhe a profissional ou **Sem preferência**. Nesse caso o sistema mostra todos os horários em que alguma profissional da área está livre e reserva com a primeira disponível. O painel mostra quem vai atender e avisa quando a cliente não teve preferência.
+
+Para **adicionar ou renomear uma profissional**:
+1. Edite a lista `profissionais` em `js/dados.js` (nome, cargo, categorias e, se quiser, `foto: "img/nome.webp"`).
+2. Cadastre o mesmo `id` no banco, no SQL Editor:
+   ```sql
+   insert into public.cl_agendas (id, nome) values ('ana', 'Ana');
+   ```
+Um link pode já chegar com a profissional marcada: `agendar.html?p=cris`.
 
 **Banco:** Supabase (projeto da agência). As tabelas usam o prefixo `cl_` e estão documentadas em `supabase/schema.sql`. O site só consegue ver os intervalos ocupados (sem nomes) e pedir horários; o resto exige login no painel.
 

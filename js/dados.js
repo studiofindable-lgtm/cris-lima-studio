@@ -43,19 +43,20 @@ var DADOS = {
     chave: "sb_publishable_nxx5C-G5-c0tZgLUgmh3dQ_-oehQuhw"
   },
 
-  /* Agendas que atendem ao mesmo tempo. Um serviço ocupa a agenda da sua
-     categoria; serviços de agendas diferentes no mesmo pedido ocupam as
-     duas no mesmo horário. ⚠ CONFIRMAR COM A CRIS quantas profissionais
-     atendem em paralelo (se for uma só, use a mesma agenda em tudo). */
-  agendas: {
-    cabelo: "Cabelo",
-    unhas: "Unhas",
-    beleza: "Cílios, sobrancelhas e micropigmentação"
-  },
+  /* Profissionais. Cada uma tem a própria agenda e atende as categorias
+     listadas. Na agenda online a cliente escolhe a profissional ou
+     "Sem preferência" (o sistema escolhe quem estiver livre).
+     O "id" precisa existir também na tabela cl_agendas do Supabase.
+     ⚠ TROCAR pelos nomes reais da equipe (e, se quiser, a foto em img/). */
+  profissionais: [
+    { id: "cris",  nome: "Cris Lima", cargo: "Especialista em loiros", categorias: ["loiros", "hair"] },
+    { id: "prof2", nome: "Profissional de unhas", cargo: "Nail designer", categorias: ["nails"] },
+    { id: "prof3", nome: "Profissional de beleza", cargo: "Cílios, sobrancelhas e micro", categorias: ["lash", "beauty", "micro"] }
+  ],
 
   categorias: [
     {
-      id: "loiros", nome: "Loiros", agenda: "cabelo", pagina: "loiros.html",
+      id: "loiros", nome: "Loiros", pagina: "loiros.html",
       desc: "Nossa especialidade: técnicas de loiro sob medida, sempre com tratamento incluso.",
       nota: "O percentual indica o nível de preenchimento da técnica. Todo loiro inclui reconstrução ou botox.",
       itens: [
@@ -69,7 +70,7 @@ var DADOS = {
       ]
     },
     {
-      id: "hair", nome: "Hair care", agenda: "cabelo", aPartir: true,
+      id: "hair", nome: "Hair care", aPartir: true,
       desc: "Progressiva, botox, cortes, escova e cronogramas para fios saudáveis.",
       nota: "Valores a partir de: o preço final depende do comprimento e volume do cabelo.",
       itens: [
@@ -87,7 +88,7 @@ var DADOS = {
       ]
     },
     {
-      id: "nails", nome: "Nails", agenda: "unhas",
+      id: "nails", nome: "Nails",
       desc: "Manicure, pedicure, alongamentos em fibra, gel e molde F1, com nail art.",
       nota: "Unhas quebradas: até 2 inclusas; as demais são cobradas à parte.",
       itens: [
@@ -111,7 +112,7 @@ var DADOS = {
       ]
     },
     {
-      id: "lash", nome: "Lash", agenda: "beleza",
+      id: "lash", nome: "Lash",
       desc: "Lash lifting e extensão de cílios nos volumes brasileiro e egípcio.",
       itens: [
         { id: "lash-lifting", nome: "Lash lifting", preco: 120, min: 60 },
@@ -120,7 +121,7 @@ var DADOS = {
       ]
     },
     {
-      id: "beauty", nome: "Beauty care", agenda: "beleza",
+      id: "beauty", nome: "Beauty care",
       desc: "Design de sobrancelhas, henna, brow lamination e maquiagem.",
       itens: [
         { id: "design", nome: "Design de sobrancelha", preco: 40, min: 30 },
@@ -135,7 +136,7 @@ var DADOS = {
       ]
     },
     {
-      id: "micro", nome: "Micropigmentação", agenda: "beleza",
+      id: "micro", nome: "Micropigmentação",
       desc: "Sobrancelhas fio a fio, lábios e olhos com acabamento natural.",
       itens: [
         { id: "micro-sobrancelha", nome: "Micropigmentação de sobrancelhas", det: "Fio a fio, retoque incluso", preco: 400, min: 150 },

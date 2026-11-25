@@ -1,6 +1,8 @@
 /* Cris Lima Studio – painel da agenda (área restrita) */
 (function () {
   var D = window.DADOS, CL = window.CL, el = CL.el;
+  var AG = {};   // profissionais: id -> nome
+  (D.profissionais || []).forEach(function (p) { AG[p.id] = p.nome; });
   var FUSO = D.fusoMin || -180;
   var $ = function (s) { return document.querySelector(s); };
   var views = ['login', 'config', 'negado', 'app'];
@@ -73,8 +75,8 @@
     $('#dia-escolher').addEventListener('change', function (e) { if (e.target.value) { st.dia = diaDe(e.target.value); carregarDia(); } });
 
     var sel = $('#bloq-agenda');
-    sel.appendChild(new Option('Todas as agendas', '*'));
-    Object.keys(D.agendas).forEach(function (k) { sel.appendChild(new Option(D.agendas[k], k)); });
+    sel.appendChild(new Option('Todas as profissionais', '*'));
+    Object.keys(AG).forEach(function (k) { sel.appendChild(new Option(AG[k], k)); });
     $('#f-bloq').addEventListener('submit', bloquear);
 
     carregarDia(); carregarPendentes();
@@ -112,6 +114,8 @@
     c.appendChild(el('div', 'n', a.nome + (a.telefone ? ' · ' + a.telefone : '')));
     c.appendChild(el('div', 's', a.descricao + (a.valor != null ? ' · ' + CL.preco(a.valor) : '')));
     if (a.obs) c.appendChild(el('div', 's', '“' + a.obs + '”'));
+    var quem = (a.agendas || []).map(function (x) { return AG[x] || x; }).join(' + ');
+    c.appendChild(el('div', 's', 'Com ' + quem + (a.sem_preferencia ? ' (cliente sem preferência)' : '')));
     c.appendChild(el('div', 's', 'Pedido #' + a.id.slice(0, 6).toUpperCase() + ' · via ' + a.origem));
     var acts = el('div', 'acts');
     function btn(txt, cls, fn) { var b = el('button', cls, txt); b.type = 'button'; b.addEventListener('click', fn); acts.appendChild(b); }
@@ -157,9 +161,9 @@
     ]).then(function (res) {
       if (res[0].error || res[1].error) { aviso(erroTxt(res[0].error || res[1].error), 'err'); return; }
       var cols = $('#cols'); cols.innerHTML = '';
-      Object.keys(D.agendas).forEach(function (ag) {
+      Object.keys(AG).forEach(function (ag) {
         var col = el('div', 'pn-col');
-        col.appendChild(el('h3', null, D.agendas[ag]));
+        col.appendChild(el('h3', null, AG[ag]));
         var itens = [];
         res[0].data.filter(function (a) { return a.agendas.indexOf(ag) !== -1; }).forEach(function (a) { itens.push([minStudio(a.inicio), cardAgendamento(a)]); });
         res[1].data.filter(function (o) { return o.agenda === ag; }).forEach(function (o) {
@@ -193,7 +197,7 @@
     var f = new FormData(e.target);
     var ini = isoDe(f.get('data'), f.get('ini')), fim = isoDe(f.get('data'), f.get('fim'));
     if (Date.parse(fim) <= Date.parse(ini)) { aviso('O fim precisa ser depois do início.', 'err'); return; }
-    var ags = f.get('agenda') === '*' ? Object.keys(D.agendas) : [f.get('agenda')];
+    var ags = f.get('agenda') === '*' ? Object.keys(AG) : [f.get('agenda')];
     var linhas = ags.map(function (ag) { return { agenda: ag, periodo: '[' + ini + ',' + fim + ')', motivo: f.get('motivo') || null }; });
     sb.from('cl_ocupacoes').insert(linhas).then(function (r) {
       if (r.error) { aviso(erroTxt(r.error), 'err'); return; }

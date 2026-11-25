@@ -13,17 +13,23 @@
   var SB = D.supabase && D.supabase.url && D.supabase.chave ? D.supabase : null;
 
   var todos = CL.servicos();
-  var porId = {}, agendaDaCat = {};
-  D.categorias.forEach(function (c) { agendaDaCat[c.id] = c.agenda || 'geral'; });
-  todos.forEach(function (s) { s.agenda = agendaDaCat[s.cat]; porId[s.id] = s; });
+  var porId = {}, profsDaCat = {}, PROF = {};
+  (D.profissionais || []).forEach(function (p) {
+    PROF[p.id] = p;
+    p.categorias.forEach(function (c) { (profsDaCat[c] = profsDaCat[c] || []).push(p.id); });
+  });
+  todos.forEach(function (s) { s.profs = profsDaCat[s.cat] || []; porId[s.id] = s; });
 
   var DIAS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
   var DIAS_LONGO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
   var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
 
   // dia = minuto (no relógio do studio) da meia-noite daquele dia
-  var st = { sel: [], tab: D.categorias[0].id, dia: null, hora: null, passo: 1, ocupado: [], agendaOk: !SB, pedido: null };
+  // pref: profissional escolhida por grupo de serviços ('*' = sem preferência)
+  // atrib: profissional que vai atender cada grupo no horário escolhido
+  var st = { sel: [], tab: D.categorias[0].id, dia: null, hora: null, passo: 1, ocupado: [], agendaOk: !SB, pref: {}, atrib: null };
 
+  var qp = new URLSearchParams(location.search).get('p');
   var q = new URLSearchParams(location.search).get('s');
   if (q) q.split(',').forEach(function (id) {
     if (porId[id] && st.sel.indexOf(id) === -1) { if (!st.sel.length) st.tab = porId[id].cat; st.sel.push(id); }
@@ -46,13 +52,51 @@
   function hm(str) { var p = str.split(':'); return +p[0] * 60 + +p[1]; }
 
   function total() {
-    var min = 0, preco = 0, aPartir = false, ags = [];
+    var min = 0, preco = 0, aPartir = false;
     st.sel.forEach(function (id) {
       var s = porId[id]; min += s.min; preco += s.preco;
       if (s.aPartir) aPartir = true;
-      if (ags.indexOf(s.agenda) === -1) ags.push(s.agenda);
     });
-    return { min: min, preco: preco, aPartir: aPartir, agendas: ags };
+    return { min: min, preco: preco, aPartir: aPartir };
+  }
+
+  /* Serviços que as mesmas profissionais atendem formam um grupo; a cliente
+     escolhe uma profissional (ou "sem preferência") para cada grupo. */
+  function grupos() {
+    var gs = [], idx = {};
+    st.sel.forEach(function (id) {
+      var s = porId[id], k = s.profs.join(',');
+      if (!(k in idx)) { idx[k] = gs.length; gs.push({ key: k, profs: s.profs, cats: [] }); }
+      var g = gs[idx[k]];
+      if (g.cats.indexOf(s.catNome) === -1) g.cats.push(s.catNome);
+    });
+    gs.forEach(function (g) {
+      if (!(g.key in st.pref)) st.pref[g.key] = (qp && g.profs.indexOf(qp) !== -1) ? qp : '*';
+    });
+    return gs;
+  }
+  function livre(prof, ini, fim) {
+    return !st.ocupado.some(function (o) { return o.agenda === prof && ini < o.fim && fim > o.ini; });
+  }
+  // devolve {grupo: profissional} se todas as escolhas estiverem livres no intervalo
+  function atribuir(gs, ini, fim) {
+    var atr = {};
+    for (var i = 0; i < gs.length; i++) {
+      var g = gs[i], esc = st.pref[g.key];
+      var cands = esc === '*' ? g.profs : [esc], ok = null;
+      for (var j = 0; j < cands.length && !ok; j++) if (livre(cands[j], ini, fim)) ok = cands[j];
+      if (!ok) return null;
+      atr[g.key] = ok;
+    }
+    return atr;
+  }
+  function profsEscolhidas() {
+    var out = [];
+    Object.keys(st.atrib || {}).forEach(function (k) { if (out.indexOf(st.atrib[k]) === -1) out.push(st.atrib[k]); });
+    return out;
+  }
+  function iniciais(n) {
+    return n.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w[0].toUpperCase(); }).join('');
   }
 
   /* ---------- API da agenda automática ---------- */
@@ -122,15 +166,14 @@
   function slotsDoDia(dia) {
     var h = D.horarios[partes(dia).getUTCDay()];
     if (!h) return [];
-    var t = total(), dur = t.min, abre = hm(h[0]), fecha = hm(h[1]), passo = D.passoAgendaMin || 30;
+    var gs = grupos(), dur = total().min, abre = hm(h[0]), fecha = hm(h[1]), passo = D.passoAgendaMin || 30;
     var minimo = agoraStudio() + (D.antecedenciaHoras || 0) * 60;
-    var ocup = st.ocupado.filter(function (o) { return t.agendas.indexOf(o.agenda) !== -1; });
     var out = [];
     for (var m = abre; m + dur <= fecha; m += passo) {
       var ini = dia + m, fim = ini + dur;
       if (ini < minimo) continue;
-      var bate = ocup.some(function (o) { return ini < o.fim && fim > o.ini; });
-      if (!bate) out.push(m);
+      var atr = atribuir(gs, ini, fim);
+      if (atr) out.push({ m: m, atrib: atr });
     }
     return out;
   }
@@ -179,18 +222,20 @@
     }
     var slots = slotsDoDia(st.dia), dur = total().min;
     [['Manhã', 0, 720], ['Tarde', 720, 1080], ['Noite', 1080, 1440]].forEach(function (p) {
-      var ss = slots.filter(function (m) { return m >= p[1] && m < p[2]; });
+      var ss = slots.filter(function (s) { return s.m >= p[1] && s.m < p[2]; });
       if (!ss.length) return;
       var box = el('div', 'bk-period');
       box.appendChild(el('h4', null, p[0]));
       var grid = el('div', 'bk-slots');
-      ss.forEach(function (m) {
+      ss.forEach(function (s) {
+        var m = s.m;
         var b = el('button', 'bk-slot', fmtHora(m));
         b.type = 'button';
         b.setAttribute('aria-pressed', st.hora === m ? 'true' : 'false');
         b.setAttribute('aria-label', fmtHora(m) + ' até ' + fmtHora(m + dur));
         b.addEventListener('click', function () {
           st.hora = m;
+          st.atrib = s.atrib;
           timesBox.querySelectorAll('.bk-slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
           b.setAttribute('aria-pressed', 'true');
           renderSum();
@@ -201,12 +246,44 @@
       timesBox.appendChild(box);
     });
   }
+  function renderPros() {
+    var box = $('.bk-pros');
+    box.innerHTML = '';
+    var gs = grupos();
+    gs.forEach(function (g) {
+      var wrap = el('div', 'bk-pro-grp');
+      wrap.appendChild(el('h4', null, gs.length > 1 ? 'Profissional para ' + g.cats.join(' e ') : 'Com quem você quer agendar?'));
+      var row = el('div', 'bk-pro-row');
+      row.setAttribute('role', 'group');
+      var opcoes = [{ id: '*', nome: 'Sem preferência', cargo: 'Primeira profissional livre' }]
+        .concat(g.profs.map(function (id) { return PROF[id]; }));
+      opcoes.forEach(function (o) {
+        var b = el('button', 'bk-pro');
+        b.type = 'button';
+        b.setAttribute('aria-pressed', st.pref[g.key] === o.id ? 'true' : 'false');
+        var av = el('span', 'av' + (o.id === '*' ? ' any' : ''), o.id === '*' ? '✦' : iniciais(o.nome));
+        if (o.foto) { av.textContent = ''; var im = el('img'); im.src = o.foto; im.alt = ''; av.appendChild(im); }
+        var tx = el('span', 'tx');
+        tx.appendChild(el('b', null, o.nome));
+        if (o.cargo) tx.appendChild(el('small', null, o.cargo));
+        b.appendChild(av); b.appendChild(tx);
+        b.addEventListener('click', function () {
+          st.pref[g.key] = o.id; st.hora = null; st.atrib = null;
+          renderPros(); renderDias(); renderSum();
+        });
+        row.appendChild(b);
+      });
+      wrap.appendChild(row);
+      box.appendChild(wrap);
+    });
+  }
   function carregarPasso2() {
     daysBox.innerHTML = ''; monthBox.textContent = '';
     timesBox.innerHTML = '';
+    $('.bk-pros').innerHTML = '';
     if (SB) timesBox.appendChild(el('div', 'bk-empty', 'Consultando os horários livres…'));
     next.disabled = true;
-    return carregarOcupados().then(function () { if (st.passo === 2) { renderDias(); renderSum(); } });
+    return carregarOcupados().then(function () { if (st.passo === 2) { renderPros(); renderDias(); renderSum(); } });
   }
 
   /* ---------- resumo e navegação ---------- */
@@ -253,8 +330,14 @@
   /* ---------- passo 3: confirmação ---------- */
   function linhas() {
     var t = total();
+    var gs = grupos();
+    var prof = gs.map(function (g) {
+      var p = st.pref[g.key], nome = p === '*' ? 'Sem preferência' : PROF[p].nome;
+      return gs.length > 1 ? g.cats.join(' e ') + ': ' + nome : nome;
+    }).join(' · ');
     return [
       ['Serviços', st.sel.map(function (id) { return porId[id].nome; }).join(' + ')],
+      ['Profissional', prof],
       ['Data', fmtData(st.dia)],
       ['Horário', fmtHora(st.hora) + ' às ' + fmtHora(st.hora + t.min)],
       ['Duração estimada', CL.duracao(t.min)],
@@ -302,7 +385,8 @@
       p_duracao_min: t.min,
       p_servicos: st.sel.slice(),
       p_descricao: st.sel.map(function (id) { return porId[id].nome; }).join(' + '),
-      p_agendas: t.agendas,
+      p_agendas: profsEscolhidas(),
+      p_sem_preferencia: grupos().some(function (g) { return st.pref[g.key] === '*'; }),
       p_valor: t.preco,
       p_nome: String(f.get('nome') || ''),
       p_telefone: String(f.get('fone') || ''),
@@ -326,7 +410,7 @@
     }).then(function () { enviar.disabled = false; enviar.innerHTML = rotulo; });
   });
   $('#bk-new').addEventListener('click', function () {
-    st.sel = []; st.dia = null; st.hora = null; form.reset();
+    st.sel = []; st.dia = null; st.hora = null; st.pref = {}; st.atrib = null; form.reset();
     renderTabs(); renderList(); irPara(1);
   });
 
