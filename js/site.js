@@ -90,6 +90,18 @@
     });
   }
 
+  /* ---------- vídeos: tocam sem som só quando aparecem na tela ---------- */
+  document.querySelectorAll('video[data-auto]').forEach(function (v) {
+    v.muted = true;
+    if (reduce || !('IntersectionObserver' in window)) { v.controls = true; v.preload = 'metadata'; return; }
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); }
+        else v.pause();
+      });
+    }, { threshold: 0.25 }).observe(v);
+  });
+
   /* ---------- antes e depois ---------- */
   document.querySelectorAll('.ba').forEach(function (ba) {
     var r = ba.querySelector('input[type=range]');

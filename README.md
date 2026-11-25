@@ -21,9 +21,10 @@ Site completo do **Cris Lima Studio** (especialista em loiros, cabelo, unhas, c�
 
 - **Preços, serviços, tempo médio e horários:** tudo fica em `js/dados.js`. O site inteiro e a agenda online leem desse arquivo.
   - `min` é o tempo médio do serviço em minutos. A agenda usa esse valor para mostrar só os horários que cabem.
-  - Quando os horários estiverem confirmados, troque `horariosConfirmados: false` por `true` para tirar o aviso.
+  - Horário atual: terça a sábado, das 9h às 18h (domingo e segunda fechado). Os tempos dos serviços seguem o app de agenda da Cris.
 - **Textos das páginas:** edite o arquivo `.html` correspondente.
-- **Fotos:** coloque em `img/` (de preferência `.webp`). Os quadros escritos "Foto em breve" são os lugares reservados para as fotos do espaço e do antes e depois.
+- **Fotos:** ficam em `img/` (em `.webp`): `trabalho-*` são os trabalhos da galeria, `studio-*` são as fotos do espaço (tiradas do vídeo de tour) e `antes-*` / `depois-*` formam o antes e depois.
+- **Vídeos:** ficam em `video/` (`.mp4` sem som). Eles só tocam quando aparecem na tela, para não gastar a internet de quem abre o site pelo celular.
 - **Visual (cores e fontes):** `css/style.css`.
 
 No GitHub, dá para editar direto pelo navegador: abra o arquivo, clique no lápis (✏️) e salve com **Commit changes**. O site se atualiza em cerca de 1 minuto.

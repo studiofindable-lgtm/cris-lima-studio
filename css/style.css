@@ -199,11 +199,8 @@ p{margin:0 0 1em}
 .ba-item figcaption b{display:block;font:500 24px/1.2 var(--serif)}
 .ba-item figcaption span{font-size:14px;color:var(--mute)}
 .ba-item{margin:0}
-/* exemplos ilustrativos enquanto não chegam as fotos */
-.demo-before{background:linear-gradient(160deg,#5a3d31 0%,#7b5644 45%,#4a3128 100%)}
-.demo-after{background:linear-gradient(160deg,#f3e2bd 0%,#e7cc98 40%,#f8eed6 70%,#dcbf8a 100%)}
-.demo-before.n{background:linear-gradient(160deg,#c9b2a6,#b39b8f)}
-.demo-after.n{background:linear-gradient(160deg,#f6d5dc,#eab3c0 60%,#f9e4e8)}
+.ba > img,.ba > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-video .ba-label{position:absolute;left:18px;bottom:18px}
 
 /* ---------- Placeholder de foto ---------- */
 .ph{position:relative;display:grid;place-items:center;text-align:center;aspect-ratio:var(--ar,4/3);border-radius:var(--r);background:repeating-linear-gradient(135deg,rgba(255,255,255,.35) 0 2px,transparent 2px 14px),linear-gradient(160deg,var(--blush) 0%,var(--blush-2) 100%);color:var(--gold-d);padding:20px;overflow:hidden}
@@ -220,7 +217,12 @@ p{margin:0 0 1em}
 .gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(46,32,35,.7));color:#fff;font:italic 500 20px/1.1 var(--serif)}
 .space-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:16px}
 .space-grid .ph:first-child{grid-row:span 2;--ar:auto;min-height:100%}
-@media (max-width:760px){.space-grid{grid-template-columns:1fr 1fr}.space-grid .ph:first-child{grid-column:span 2;grid-row:auto;--ar:4/3}}
+.space-grid .sp{position:relative;margin:0;border-radius:var(--r);overflow:hidden;aspect-ratio:var(--ar,4/3);background:var(--blush-2)}
+.space-grid .sp img,.space-grid .sp video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.space-grid .sp figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(transparent,rgba(46,32,35,.62));color:#fff;font:italic 500 18px/1.15 var(--serif)}
+.space-grid .sp:first-child{grid-row:span 2;--ar:auto;min-height:100%}
+.space-grid.three{grid-template-columns:1.6fr 1fr}
+@media (max-width:760px){.space-grid{grid-template-columns:1fr 1fr}.space-grid .ph:first-child{grid-column:span 2;grid-row:auto;--ar:4/3}.space-grid .sp:first-child{grid-column:span 2;grid-row:auto;--ar:4/5}.space-grid.three{grid-template-columns:1fr 1fr}}
 
 /* ---------- Lista de preços ---------- */
 .cat-nav{position:sticky;top:var(--head-h);z-index:10;background:rgba(251,242,239,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}

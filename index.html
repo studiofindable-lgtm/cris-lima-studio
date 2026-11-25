@@ -40,6 +40,9 @@
     "addressCountry": "BR"
   },
   "sameAs": ["https://instagram.com/cris.limastudio"],
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "18:00"}
+  ],
   "makesOffer": [
     {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Loiros (Blonde Hair, Blonde Premium, Mechas Iluminadas, Truck)"}},
     {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Unhas em gel, fibra de vidro e molde F1"}},
@@ -159,37 +162,27 @@
   <div class="wrap">
     <div class="sec-head center" data-reveal>
       <span class="eyebrow">Antes &amp; Depois</span>
-      <h2>Arraste e veja a <em>transformação</em></h2>
-      <p class="lead">Em breve, os resultados reais das nossas clientes, lado a lado.</p>
+      <h2>Resultados <em>reais</em></h2>
+      <p class="lead">Arraste a linha no meio da foto para comparar, ou veja a transformação em vídeo.</p>
     </div>
     <div class="ba-grid">
       <figure class="ba-item" data-reveal>
         <div class="ba">
-          <div class="ba-layer demo-before"><span class="ba-label">Antes</span></div>
-          <div class="ba-layer ba-after demo-after"><span class="ba-label">Depois</span></div>
+          <div class="ba-layer"><img src="img/antes-alisamento.webp" alt="Antes: cabelo castanho de costas" width="640" height="800" loading="lazy" decoding="async"><span class="ba-label">Antes</span></div>
+          <div class="ba-layer ba-after"><img src="img/depois-alisamento.webp" alt="Depois: cabelo castanho de costas" width="640" height="800" loading="lazy" decoding="async"><span class="ba-label">Depois</span></div>
           <div class="ba-line"></div>
-          <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: Blonde Premium">
+          <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: Alisamento">
         </div>
-        <figcaption><b>Blonde Premium</b><span>Loiros</span></figcaption>
+        <figcaption><b>Alisamento</b><span>Hair care</span></figcaption>
       </figure>
       <figure class="ba-item" data-reveal>
-        <div class="ba">
-          <div class="ba-layer demo-before"><span class="ba-label">Antes</span></div>
-          <div class="ba-layer ba-after demo-after"><span class="ba-label">Depois</span></div>
-          <div class="ba-line"></div>
-          <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: Mechas Iluminadas">
+        <div class="ba ba-video">
+          <video src="video/loiro.mp4" poster="img/poster-loiro.webp" muted loop playsinline preload="none" data-auto aria-label="Vídeo da transformação de um loiro no studio"></video>
+          <span class="ba-label">Vídeo</span>
         </div>
-        <figcaption><b>Mechas Iluminadas</b><span>Loiros</span></figcaption>
+        <figcaption><b>Loiro</b><span>Do processo ao resultado</span></figcaption>
       </figure>
-      <figure class="ba-item" data-reveal>
-        <div class="ba">
-          <div class="ba-layer demo-before n"><span class="ba-label">Antes</span></div>
-          <div class="ba-layer ba-after demo-after n"><span class="ba-label">Depois</span></div>
-          <div class="ba-line"></div>
-          <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: Alongamento em fibra">
-        </div>
-        <figcaption><b>Alongamento em fibra</b><span>Nails</span></figcaption>
-      </figure>
+      <figure class="ba-item" data-reveal><div class="ba"><img src="img/trabalho-02.webp" alt="Loiro platinado liso, de costas" width="720" height="960" loading="lazy" decoding="async"></div><figcaption><b>Loiro platinado</b><span>Loiros</span></figcaption></figure>
     </div>
     <div class="btns" style="justify-content:center;margin-top:36px" data-reveal><a class="btn btn-line" href="galeria.html">Ver galeria completa</a></div>
   </div>
@@ -197,10 +190,10 @@
 
 <section class="sec blush">
   <div class="wrap split">
-    <div class="space-grid" data-reveal>
-      <div class="ph"><div><span>Fachada do studio</span><small>Foto em breve</small></div></div>
-      <div class="ph"><div><span>Recepção</span><small>Foto em breve</small></div></div>
-      <div class="ph"><div><span>Atendimento</span><small>Foto em breve</small></div></div>
+    <div class="space-grid three" data-reveal>
+      <figure class="sp"><img src="img/studio-recepcao.webp" alt="Recepção do Cris Lima Studio" width="576" height="1024" loading="lazy" decoding="async"><figcaption>Recepção</figcaption></figure>
+      <figure class="sp"><img src="img/studio-espera.webp" alt="Sala de espera do Cris Lima Studio" width="576" height="1024" loading="lazy" decoding="async"><figcaption>Sala de espera</figcaption></figure>
+      <figure class="sp"><img src="img/studio-unhas.webp" alt="Espaço de unhas do Cris Lima Studio" width="576" height="1024" loading="lazy" decoding="async"><figcaption>Espaço de unhas</figcaption></figure>
     </div>
     <div data-reveal>
       <span class="eyebrow">O Studio</span>
