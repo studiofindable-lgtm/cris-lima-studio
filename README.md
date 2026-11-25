@@ -74,3 +74,7 @@ Quem entra no painel sem estar nessa lista vê a mensagem "Usuário sem permiss�
 ## Domínio próprio
 
 O endereço oficial é **https://crislimastudio.com.br**. Ele é servido pelo Netlify, que publica sozinho a cada commit na branch `main`, e o DNS do domínio fica no Netlify. Todas as páginas, o `sitemap.xml` e o `robots.txt` apontam esse domínio como endereço principal (tag canônica), para o Google não tratar a cópia do github.io como o site original. Se um dia o endereço mudar, troque o domínio nos arquivos `.html`, no `sitemap.xml` e no `robots.txt`.
+
+## Página /links (bio do Instagram)
+
+A página `links/index.html` é a lista de links para colocar na bio do Instagram: https://crislimastudio.com.br/links. Ela é gerada junto com as outras páginas, fica fora do `sitemap.xml` e tem `noindex`, para não competir com a página inicial nos buscadores. Os botões e o horário ficam no bloco "LINKS" do gerador.
