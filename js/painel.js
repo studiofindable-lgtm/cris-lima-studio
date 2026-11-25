@@ -4,6 +4,8 @@
   var AG = {};   // profissionais: id -> nome
   (D.profissionais || []).forEach(function (p) { AG[p.id] = p.nome; });
   var FUSO = D.fusoMin || -180;
+  // usuário 'admin' vira este e-mail interno no Supabase (a senha fica só no Supabase)
+  var ADMIN_DOMINIO = '@cris-lima-studio.com';
   var $ = function (s) { return document.querySelector(s); };
   var views = ['login', 'config', 'negado', 'app'];
   function mostrar(v) { views.forEach(function (x) { $('#v-' + x).hidden = x !== v; }); }
@@ -43,8 +45,10 @@
     e.preventDefault();
     var f = new FormData(e.target), err = $('#login-err');
     err.hidden = true;
-    sb.auth.signInWithPassword({ email: f.get('email'), password: f.get('senha') }).then(function (r) {
-      if (r.error) { err.textContent = 'E-mail ou senha incorretos.'; err.hidden = false; return; }
+    var usuario = String(f.get('email') || '').trim();
+    var email = usuario.indexOf('@') === -1 ? usuario.toLowerCase() + ADMIN_DOMINIO : usuario;
+    sb.auth.signInWithPassword({ email: email, password: f.get('senha') }).then(function (r) {
+      if (r.error) { err.textContent = 'Usuário ou senha incorretos.'; err.hidden = false; return; }
       iniciar(r.data.session);
     });
   });
@@ -104,6 +108,15 @@
     });
   }
 
+  function excluirAgendamento(a) {
+    if (!confirm('Excluir o pedido de ' + a.nome + '? O horário volta a ficar livre e o pedido some do painel. Não dá para desfazer.')) return;
+    sb.from('cl_agendamentos').delete().eq('id', a.id).then(function (r) {
+      if (r.error) { aviso(erroTxt(r.error), 'err'); return; }
+      aviso('Pedido de ' + a.nome + ' excluído.');
+      carregarDia(); carregarPendentes();
+    });
+  }
+
   function cardAgendamento(a) {
     var ini = minStudio(a.inicio), fim = minStudio(a.fim);
     var c = el('div', 'pn-item ' + a.status);
@@ -123,6 +136,7 @@
     if (a.status === 'confirmado') btn('Concluído', 'ok', function () { mudarStatus(a, 'concluido'); });
     if (a.status === 'pendente' || a.status === 'confirmado') btn('Cancelar', '', function () { mudarStatus(a, 'cancelado'); });
     if (a.status === 'cancelado') btn('Reativar', '', function () { mudarStatus(a, 'pendente'); });
+    btn('Excluir', 'perigo', function () { excluirAgendamento(a); });
     var dia = Math.floor(ini / 1440) * 1440;
     var link = waCliente(a, 'Olá, ' + a.nome.split(' ')[0] + '! Seu horário no ' + D.nome + ' está confirmado: ' + fmtDia(dia) + ', às ' + fmtHora(ini) + ' (' + a.descricao + '). Te esperamos! 💕');
     if (link) { var w = el('a', 'wa', 'WhatsApp'); w.href = link; w.target = '_blank'; w.rel = 'noopener'; acts.appendChild(w); }

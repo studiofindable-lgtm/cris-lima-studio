@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#2e2023">
+<title>Ver agendas – Cris Lima Studio</title>
+<link rel="icon" href="img/logo.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<style>
+body{background:var(--cream)}
+.pn-top{position:sticky;top:0;z-index:20;background:var(--plum);color:#eadcdc}
+.pn-top .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.pn-top .brand b{background:linear-gradient(135deg,#e7b9aa,#f6dccf 50%,#d59e8f);-webkit-background-clip:text;background-clip:text;font-size:22px}
+.pn-top .brand small{color:var(--gold-l)}
+.pn-top .brand img{width:38px;height:38px}
+.pn-top .who{margin-left:auto;font-size:14px;color:#cdb8b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40vw}
+.pn-top button{background:none;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:8px 16px;cursor:pointer;font-size:14px}
+.pn-main{padding:28px 0 80px}
+.pn-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
+.pn-login{max-width:420px;margin:8vh auto 0}
+.pn-login h1{font-size:40px;margin-bottom:8px}
+.pn-login form{display:grid;gap:14px;margin-top:22px}
+.pn-field{display:grid;gap:6px;font-size:14px;color:var(--ink-2)}
+.pn-field input,.pn-field select,.pn-field textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--ivory);font:400 16px/1.4 var(--sans);color:var(--ink)}
+.pn-msg{padding:12px 14px;border-radius:12px;font-size:15px}
+.pn-msg.err{background:#fbe9e7;color:#8a3b2f;border:1px solid #efc3bd}
+.pn-msg.ok{background:#eef6ee;color:#2f5d34;border:1px solid #cfe5d0}
+.pn-msg[hidden]{display:none}
+.pn-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.pn-tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 18px;cursor:pointer;font-size:15px}
+.pn-tabs button[aria-selected="true"]{background:var(--plum);border-color:var(--plum);color:#fff}
+.pn-tabs .ct{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:6px;padding:0 6px;border-radius:999px;background:var(--rg);color:#2e1c1a;font-size:12px}
+.pn-day{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.pn-day h2{font-size:32px;margin-right:auto}
+.pn-day button,.pn-day input{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;cursor:pointer;font:400 15px var(--sans)}
+.pn-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.pn-col h3{font:500 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-d);margin:0 0 12px}
+.pn-item{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold-l);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.pn-item.confirmado{border-left-color:#6a9e6f}
+.pn-item.pendente{border-left-color:#d7a03b}
+.pn-item.cancelado{opacity:.55;border-left-color:#bbb}
+.pn-item.concluido{border-left-color:#7d6a6d}
+.pn-item.bloqueio{background:repeating-linear-gradient(135deg,#fff 0 10px,#fbf2ef 10px 20px);border-left-color:var(--plum)}
+.pn-item .h{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.pn-item .h b{font:500 22px/1.1 var(--serif)}
+.pn-pill{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--blush);color:var(--gold-d);white-space:nowrap}
+.pn-pill.pendente{background:#fbefd6;color:#8a6011}
+.pn-pill.confirmado{background:#e3f0e4;color:#2f5d34}
+.pn-pill.cancelado{background:#eee;color:#666}
+.pn-item .n{font-weight:500;margin-top:6px}
+.pn-item .s{font-size:14px;color:var(--mute)}
+.pn-item .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pn-item .acts a,.pn-item .acts button{font:500 13px var(--sans);letter-spacing:.03em;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;text-decoration:none;color:var(--ink)}
+.pn-item .acts .ok{background:var(--plum);border-color:var(--plum);color:#fff}
+.pn-item .acts .wa{border-color:#bfe0c3;color:#2f5d34}
+.pn-empty{padding:18px;border-radius:14px;background:#fff;border:1px dashed var(--line);color:var(--mute);font-size:14px;text-align:center}
+.pn-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;align-items:end}
+.pn-form .full{grid-column:1/-1}
+.pn-list .pn-item{max-width:720px}
+.pn-list .d{font:italic 500 18px/1 var(--serif);color:var(--gold-d);margin:22px 0 10px}
+[hidden]{display:none!important}
+.pn-item .acts button.perigo{border-color:#d9a09a;color:#8a3b2f}
+</style>
+</head>
+<body>
+<header class="pn-top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo.webp" alt="" width="38" height="38"><span><b>Cris Lima</b><small>PAINEL</small></span></a>
+    <span class="who" id="who"></span>
+    <button type="button" id="sair" hidden>Sair</button>
+  </div>
+</header>
+
+<main class="pn-main">
+  <div class="wrap">
+
+    <section class="pn-card pn-login" id="v-login" hidden>
+      <span class="eyebrow">Área do studio</span>
+      <h1>Ver <em>agendas</em></h1>
+      <p class="muted">Use o e-mail e a senha cadastrados para a equipe.</p>
+      <form id="f-login">
+        <label class="pn-field">Usuário<input type="text" name="email" required autocomplete="username" autocapitalize="none"></label>
+        <label class="pn-field">Senha<input type="password" name="senha" required autocomplete="current-password"></label>
+        <p class="pn-msg err" id="login-err" hidden></p>
+        <button class="btn btn-dark" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <section class="pn-card pn-login" id="v-config" hidden>
+      <span class="eyebrow">Configuração</span>
+      <h1>Agenda automática <em>desligada</em></h1>
+      <p class="muted">Preencha a URL e a chave do Supabase em <code>js/dados.js</code> para ativar o painel.</p>
+    </section>
+
+    <section class="pn-card pn-login" id="v-negado" hidden>
+      <span class="eyebrow">Sem acesso</span>
+      <h1>Usuário sem <em>permissão</em></h1>
+      <p class="muted">Este usuário ainda não é administrador do studio. Envie o código abaixo para quem cuida do site liberar o acesso:</p>
+      <p><code id="uid"></code></p>
+    </section>
+
+    <section id="v-app" hidden>
+      <div class="pn-tabs" role="tablist">
+        <button type="button" role="tab" data-tab="dia" aria-selected="true">Agenda do dia</button>
+        <button type="button" role="tab" data-tab="pend" aria-selected="false">Pedidos pendentes <span class="ct" id="ct-pend">0</span></button>
+        <button type="button" role="tab" data-tab="bloq" aria-selected="false">Bloquear horário</button>
+      </div>
+      <p class="pn-msg" id="msg" hidden></p>
+
+      <div data-view="dia">
+        <div class="pn-day">
+          <h2 id="dia-titulo">Hoje</h2>
+          <button type="button" id="dia-ant" aria-label="Dia anterior">←</button>
+          <button type="button" id="dia-hoje">Hoje</button>
+          <button type="button" id="dia-prox" aria-label="Próximo dia">→</button>
+          <input type="date" id="dia-escolher" aria-label="Escolher data">
+        </div>
+        <div class="pn-cols" id="cols"></div>
+      </div>
+
+      <div data-view="pend" hidden>
+        <div class="pn-list" id="pend"></div>
+      </div>
+
+      <div data-view="bloq" hidden>
+        <div class="pn-card">
+          <h3 style="margin-bottom:6px">Bloquear ou reservar um horário</h3>
+          <p class="muted" style="margin-bottom:20px">Use para folgas, almoço ou clientes que agendaram por telefone. O horário some da agenda do site.</p>
+          <form class="pn-form" id="f-bloq">
+            <label class="pn-field">Profissional<select name="agenda" id="bloq-agenda"></select></label>
+            <label class="pn-field">Data<input type="date" name="data" required></label>
+            <label class="pn-field">Início<input type="time" name="ini" required step="900"></label>
+            <label class="pn-field">Fim<input type="time" name="fim" required step="900"></label>
+            <label class="pn-field full">Motivo ou cliente<input type="text" name="motivo" maxlength="120" placeholder="Ex.: Almoço, Folga, Maria – progressiva"></label>
+            <div class="full"><button class="btn btn-dark" type="submit">Bloquear horário</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="js/dados.js"></script>
+<script src="js/site.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/painel.js"></script>
+</body>
+</html>
