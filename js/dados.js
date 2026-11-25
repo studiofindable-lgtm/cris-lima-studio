@@ -95,6 +95,8 @@ var DADOS = {
         { id: "escova", nome: "Escova", preco: 90, min: 60 },
         { id: "corte", nome: "Corte", preco: 120, min: 30 },
         { id: "tratamento", nome: "Tratamento", det: "Reconstrução, nutrição e hidratação", preco: 120, min: 30 },
+        { id: "tratamento-escova", nome: "Tratamento e escova", preco: 100, min: 60 },
+        { id: "tratamento-babyliss", nome: "Tratamento com escova e babyliss", preco: 170, min: 90 },
         { id: "tonalizacao", nome: "Tonalização", preco: 160, min: 120 },
         { id: "matizacao", nome: "Matização", preco: 120, min: 90 },
         { id: "tintura-raiz", nome: "Tintura raiz", preco: 120, min: 90 },
@@ -110,6 +112,7 @@ var DADOS = {
         { id: "manicure", grupo: "Manicure e pedicure", nome: "Manicure", preco: 40, min: 60 },
         { id: "pedicure", grupo: "Manicure e pedicure", nome: "Pedicure", preco: 45, min: 60 },
         { id: "blindagem", grupo: "Manicure e pedicure", nome: "Blindagem", preco: 90, min: 60 },
+        { id: "pe-mao-simples", grupo: "Manicure e pedicure", nome: "Pé e mão simples", preco: 70, min: 130 },
         { id: "fibra", grupo: "Alongamentos de unhas", nome: "Fibra de vidro", preco: 250, min: 150 },
         { id: "gel-tips", grupo: "Alongamentos de unhas", nome: "Gel na Tips", preco: 190, min: 120 },
         { id: "molde-f1", grupo: "Alongamentos de unhas", nome: "Molde F1", preco: 180, min: 120 },
@@ -121,6 +124,8 @@ var DADOS = {
         { id: "francesa", grupo: "Alongamentos de unhas", nome: "Francesa sorriso", preco: 20, min: 20 },
         { id: "remocao", grupo: "Alongamentos de unhas", nome: "Remoção", preco: 65, min: 45 },
         { id: "pe-gel", grupo: "Alongamentos de unhas", nome: "Pé em gel + esmaltação", preco: 130, min: 90 },
+        { id: "banho-gel-simples", grupo: "Alongamentos de unhas", nome: "Banho em gel", preco: 100, min: 60 },
+        { id: "esmaltacao-gel-pe-mao", grupo: "Alongamentos de unhas", nome: "Esmaltação em gel pé e mão", preco: 180, min: 100 },
         { id: "manut-fibra", grupo: "Manutenção", grupoDet: "somente técnicas que têm manutenção", nome: "Manutenção fibra de vidro", preco: 180, min: 100 },
         { id: "manut-gel-tips", grupo: "Manutenção", grupoDet: "somente técnicas que têm manutenção", nome: "Manutenção gel na Tips", preco: 150, min: 100 },
         { id: "manut-molde-f1", grupo: "Manutenção", grupoDet: "somente técnicas que têm manutenção", nome: "Manutenção molde F1", preco: 140, min: 100 }
@@ -140,6 +145,7 @@ var DADOS = {
       desc: "Design de sobrancelhas, henna, brow lamination e maquiagem.",
       itens: [
         { id: "design", nome: "Design de sobrancelha", preco: 40, min: 30 },
+        { id: "buco", nome: "Buço", preco: 15, min: 30 },
         { id: "design-henna", nome: "Design com henna", preco: 50, min: 60 },
         { id: "depilacao-facial", nome: "Depilação facial", preco: 30, min: 30 },
         { id: "brow-lamination", nome: "Brow lamination", preco: 130, min: 90 },
