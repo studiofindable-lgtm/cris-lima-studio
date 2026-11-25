@@ -123,8 +123,10 @@
   document.querySelectorAll('[data-list]').forEach(function (box) {
     var c = D.categorias.filter(function (x) { return x.id === box.getAttribute('data-list'); })[0];
     if (!c) return;
-    var grupo = null;
+    var grupo = null, so = box.getAttribute('data-grupos');
+    so = so ? so.split('|') : null; // data-grupos: só estes grupos da categoria
     c.itens.forEach(function (s) {
+      if (so && so.indexOf(s.grupo) === -1) return;
       if (s.grupo && s.grupo !== grupo) {
         grupo = s.grupo;
         var g = el('div', 'pgroup', s.grupo);
@@ -132,7 +134,8 @@
         box.appendChild(g);
       }
       var row = el('div', 'prow');
-      var n = el('div', 'n', s.nome);
+      var n = el('div', 'n');
+      n.appendChild(el('b', null, s.nome));
       if (s.det) n.appendChild(el('small', null, s.det));
       var meta = el('div', 'meta', '⏱ ' + CL.duracao(s.min) + ' em média');
       n.appendChild(meta);

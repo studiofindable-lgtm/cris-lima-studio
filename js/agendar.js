@@ -326,6 +326,8 @@
     if (n === 2) carregarPasso2();
     if (n === 3) { renderReview(); erro.hidden = true; }
     renderSum();
+    var pn = root.querySelector('[data-panel="' + n + '"]');
+    if (pn) pn.scrollTop = 0; // no computador o painel rola por dentro da tela da agenda
     var h = root.querySelector('[data-panel="' + n + '"] h3');
     if (h) h.focus({ preventScroll: true });
     var y = root.getBoundingClientRect().top + window.scrollY - 90;
@@ -422,4 +424,10 @@
   });
 
   renderTabs(); renderList(); irPara(1);
+
+  // veio de um botão Agendar (serviço ou profissional na URL): abre direto na agenda
+  if ((q || qp) && !location.hash) {
+    var ag = document.getElementById('agenda');
+    if (ag) requestAnimationFrame(function () { ag.scrollIntoView({ block: 'start' }); });
+  }
 })();

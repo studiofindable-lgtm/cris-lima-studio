@@ -25,7 +25,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
-<body>
+<body class="telas">
 <header class="top nav">
   <a class="sr" href="#conteudo">Pular para o conteúdo</a>
   <div class="wrap">
@@ -40,79 +40,137 @@
       <a href="galeria.html">Antes & Depois</a>
       <a href="studio.html">O Studio</a>
       <a href="blog.html">Blog</a>
-      <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+      <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
     </nav>
-    <a class="btn btn-gold btn-sm btn-agendar" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar</a>
+    <a class="btn btn-gold btn-sm btn-agendar" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar</a>
     <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><i></i></button>
   </div>
 </header>
 <main id="conteudo">
-<section class="page-hero" data-enter>
+<!-- tasteskill: place · uma seção por tela (1440x900): abertura 1 · loiros 1 · hair 1 · nails 1 · alongamentos 1 · beauty 1 · cílios e micro 1 · fechamento (rodapé) 1 -->
+<section class="hero" data-enter>
   <div class="wrap">
-    <p class="crumbs"><a href="index.html">Início</a> / Serviços</p>
-    <span class="eyebrow">Serviços e preços</span>
-    <h1>Escolha o seu <em>momento</em></h1>
-    <p class="lead">Todos os valores e o tempo médio de cada atendimento. Toque em Agendar para ver os horários livres.</p>
+    <div>
+      <p class="crumbs"><a href="index.html">Início</a> / Serviços</p>
+      <span class="eyebrow">Serviços e preços</span>
+      <h1>Escolha o seu <em>momento</em></h1>
+      
+      <p class="lead">Todos os valores e o tempo médio de cada atendimento. Toque em Agendar para ver os horários livres.</p>
+      <nav class="cat-chips" aria-label="Categorias">
+        <a href="#loiros">Loiros</a><a href="#hair">Hair care</a><a href="#nails">Nails</a><a href="#alongamentos">Alongamentos</a><a href="#beauty">Beauty care</a><a href="#lash">Cílios</a><a href="#micro">Micropigmentação</a>
+      </nav>
+      <div class="btns"><a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+        <a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> WhatsApp</a></div>
+    </div>
+    <div class="hero-art">
+      <div class="arch"><img data-enter-media src="img/studio-cabelo.webp" alt="Bancadas de cabelo do studio, com espelho redondo e cadeiras pretas" width="576" height="1024" fetchpriority="high"></div>
+    </div>
   </div>
 </section>
-<nav class="cat-nav" aria-label="Categorias"><div class="wrap">
-  <a href="#loiros">Loiros</a>
-  <a href="#hair">Hair care</a>
-  <a href="#nails">Nails</a>
-  <a href="#lash">Lash</a>
-  <a href="#beauty">Beauty care</a>
-  <a href="#micro">Micropigmentação</a>
-</div></nav>
-<div class="wrap narrow" style="padding-bottom:40px">
-  <noscript><p class="note">Ative o JavaScript para ver a tabela de preços, ou fale com a gente no WhatsApp (41) 99549-9770.</p></noscript>
-  <section class="cat" id="loiros">
-    <div class="cat-head"><div><h2>Loiros</h2><p>Técnicas de loiro sob medida, sempre com reconstrução ou botox.</p></div><a class="link" href="loiros.html">Conhecer as técnicas</a></div>
-    <div class="plist" data-list="loiros"></div>
-    <p class="note">O percentual indica o nível de preenchimento da técnica.</p>
-  </section>
-  <section class="cat" id="hair">
-    <div class="cat-head"><div><h2>Hair care</h2><p>Progressiva, botox, cortes, escova e cronogramas para fios saudáveis.</p></div></div>
-    <div class="plist" data-list="hair"></div>
-    <p class="note">Valores a partir de: o preço final depende do comprimento e do volume do cabelo.</p>
-  </section>
-  <section class="cat" id="nails">
-    <div class="cat-head"><div><h2>Nails</h2><p>Manicure, pedicure, alongamentos e nail art.</p></div></div>
-    <div class="plist" data-list="nails"></div>
-    <p class="note">Unhas quebradas: até 2 inclusas; as demais são cobradas à parte.</p>
-  </section>
-  <section class="cat" id="lash">
-    <div class="cat-head"><div><h2>Lash</h2><p>Lash lifting e extensão de cílios.</p></div><a class="link" href="blog/extensao-de-cilios.html">Brasileiro ou egípcio?</a></div>
-    <div class="plist" data-list="lash"></div>
-    
-  </section>
-  <section class="cat" id="beauty">
-    <div class="cat-head"><div><h2>Beauty care</h2><p>Sobrancelhas, depilação facial e maquiagem.</p></div></div>
-    <div class="plist" data-list="beauty"></div>
-    
-  </section>
-  <section class="cat" id="micro">
-    <div class="cat-head"><div><h2>Micropigmentação</h2><p>Sobrancelhas, lábios e olhos.</p></div></div>
-    <div class="plist" data-list="micro"></div>
-    
-  </section>
-</div>
+<noscript><div class="wrap"><p class="note">Ative o JavaScript para ver a tabela de preços, ou fale com a gente no WhatsApp (41) 99549-9770.</p></div></noscript>
+<section class="sec tela" id="loiros">
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
+      <h2>Loiros</h2>
+      <p class="cat-desc">Técnicas de loiro sob medida, sempre com reconstrução ou botox.</p>
+      <p class="note">O percentual indica o nível de preenchimento da técnica.</p>
+      <a class="link" href="loiros.html">Conhecer as técnicas</a>
+      <figure class="foto-fill"><img src="img/loiros-truck.webp" alt="Cabelo loiro ondulado com contorno iluminado no topo, de costas" width="480" height="640" loading="lazy" decoding="async"></figure>
+    </div>
+    <div>
+      <div class="plist duas" data-list="loiros"></div>
+    </div>
+  </div>
+</section>
 
-<section class="sec">
-  <div class="wrap">
-    <div class="cta" data-reveal>
-      <h2>Seu próximo horário está a <em>um toque</em></h2>
-      <p>Escolha o serviço, veja os horários livres e confirme. Simples assim.</p>
-      <div class="btns">
-        <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
-        <a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Falar no WhatsApp</a>
-      </div>
+<section class="sec tela alt" id="hair">
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
+      <h2>Hair care</h2>
+      <p class="cat-desc">Progressiva, botox, cortes, escova e cronogramas para fios saudáveis.</p>
+      <p class="note">Valores a partir de: o preço final depende do comprimento e do volume do cabelo.</p>
+      
+      <figure class="foto-fill"><img src="img/depois-alisamento.webp" alt="Cabelo castanho liso depois do alisamento, de costas" width="640" height="800" loading="lazy" decoding="async"></figure>
+    </div>
+    <div>
+      <div class="plist duas" data-list="hair"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tela" id="nails">
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
+      <h2>Nails</h2>
+      <p class="cat-desc">Manicure, pedicure, blindagem e manutenção dos alongamentos.</p>
+      <p class="note">Unhas quebradas: até 2 inclusas; as demais são cobradas à parte.</p>
+      
+      <figure class="foto-fill"><img src="img/studio-unhas.webp" alt="Mesas de manicure do studio, com a parede de esmaltes" width="576" height="1024" loading="lazy" decoding="async"></figure>
+    </div>
+    <div>
+      <div class="plist duas" data-list="nails" data-grupos="Manicure e pedicure|Manutenção"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tela alt" id="alongamentos">
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
+      <h2>Alongamentos de <em>unhas</em></h2>
+      <p class="cat-desc">Fibra de vidro, gel na tips, molde F1, soft gel, esmaltação em gel e nail art.</p>
+      
+      
+      <figure class="foto-fill"><img src="img/studio-unhas-2.webp" alt="Mesa de unhas com a parede de esmaltes ao fundo" width="576" height="1024" loading="lazy" decoding="async"></figure>
+    </div>
+    <div>
+      <div class="plist duas" data-list="nails" data-grupos="Alongamentos de unhas"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tela" id="beauty">
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
+      <h2>Beauty care</h2>
+      <p class="cat-desc">Sobrancelhas, depilação facial e maquiagem.</p>
+      
+      
+      <figure class="foto-fill"><img src="img/studio-beleza.webp" alt="Espelho de maquiagem com luzes e cadeira na sala de beleza" width="576" height="1024" loading="lazy" decoding="async"></figure>
+    </div>
+    <div>
+      <div class="plist duas" data-list="beauty"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt tela" id="lash">
+  <span class="ancora" id="micro"></span>
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
+      <h2>Cílios e <em>micropigmentação</em></h2>
+      <p class="cat-desc">Lash lifting e extensão de cílios. Micropigmentação de sobrancelhas, lábios e olhos.</p>
+      <a class="link" href="blog/extensao-de-cilios.html">Volume brasileiro ou egípcio?</a>
+      <figure class="foto-fill"><img src="img/studio-maca.webp" alt="Sala de cílios do studio, com maca e espelho com luzes" width="576" height="1024" loading="lazy" decoding="async"></figure>
+    </div>
+    <div class="cat-listas">
+      <div><h3>Lash</h3><div class="plist" data-list="lash"></div></div>
+      <div><h3>Micropigmentação</h3><div class="plist" data-list="micro"></div></div>
     </div>
   </div>
 </section>
 </main>
 <footer class="foot closing">
   <div class="wrap">
-    <div>
+    <div class="close">
+      <h2>Seu próximo horário está a <em>um toque</em></h2>
+      <p>Escolha o serviço, veja os horários livres e confirme. Simples assim.</p>
+      <div class="btns">
+        <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+        <a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>
       <a class="brand" href="index.html"><img src="img/logo.webp" alt="" width="56" height="56" loading="lazy"><span><b>Cris Lima</b><small>STUDIO</small></span></a>
       <p class="tagline">Onde sua beleza se torna digna de princesa.</p>
     </div>
@@ -129,7 +187,7 @@
     <div>
       <h3>Agende</h3>
       <ul>
-        <li><a href="agendar.html">Agendamento online</a></li>
+        <li><a href="agendar.html#agenda">Agendamento online</a></li>
         <li><a href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener">WhatsApp (41) 99549-9770</a></li>
         <li><a href="agendar.html#politica">Política de agendamento</a></li>
       </ul>
@@ -142,10 +200,11 @@
       </ul>
     </div>
     <div class="legal"><span>© <span data-year>2026</span> Cris Lima Studio</span><span>Cabelo, unhas e beleza no Cajuru</span></div>
+    </div>
   </div>
 </footer>
 <div class="mbar">
-  <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+  <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
   <a class="btn btn-wa" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg></a>
 </div>
 <script src="js/dados.js"></script>

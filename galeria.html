@@ -25,7 +25,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
-<body>
+<body class="telas">
 <header class="top nav">
   <a class="sr" href="#conteudo">Pular para o conteúdo</a>
   <div class="wrap">
@@ -40,24 +40,41 @@
       <a href="galeria.html" aria-current="page">Antes & Depois</a>
       <a href="studio.html">O Studio</a>
       <a href="blog.html">Blog</a>
-      <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+      <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
     </nav>
-    <a class="btn btn-gold btn-sm btn-agendar" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar</a>
+    <a class="btn btn-gold btn-sm btn-agendar" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar</a>
     <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><i></i></button>
   </div>
 </header>
 <main id="conteudo">
-<section class="page-hero" data-enter>
+<!-- tasteskill: place · uma seção por tela (1440x900): abertura 1 · antes e depois 1 · trabalhos 1 · fechamento (rodapé) 1 -->
+<section class="hero" data-enter>
   <div class="wrap">
-    <p class="crumbs"><a href="index.html">Início</a> / Antes &amp; Depois</p>
-    <span class="eyebrow">Galeria</span>
-    <h1>Antes &amp; <em>depois</em></h1>
-    <p class="lead">Resultados reais de clientes do studio. Arraste a linha no meio da foto: à esquerda o antes, à direita o depois.</p>
+    <div>
+      <p class="crumbs"><a href="index.html">Início</a> / Antes &amp; Depois</p>
+      <span class="eyebrow">Galeria</span>
+      <h1>Antes &amp; <em>depois</em></h1>
+      
+      <p class="lead">Resultados reais de clientes do studio: alisamentos, loiros e a transformação completa em vídeo.</p>
+      
+      <div class="btns"><a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+        <a class="btn btn-line" href="https://instagram.com/cris.limastudio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg> Instagram</a></div>
+    </div>
+    <div class="hero-art">
+      <div class="arch"><video data-enter-media src="video/alisamento.mp4" poster="img/poster-alisamento.webp" muted loop playsinline preload="none" data-auto aria-label="Vídeo do antes e depois de um alisamento no studio"></video></div>
+    </div>
   </div>
 </section>
-<section class="sec">
-  <div class="wrap">
-    <div class="ba-grid">
+
+<section class="sec tela" id="antes-e-depois">
+  <div class="wrap col">
+    <div class="sec-head row">
+      <div>
+        <h2>Arraste e <em>compare</em></h2>
+        <p class="lead">Arraste a linha no meio da foto: à esquerda o antes, à direita o depois.</p>
+      </div>
+    </div>
+    <div class="ba-grid fill">
       <figure class="ba-item" data-reveal>
         <div class="ba">
           <div class="ba-layer"><img src="img/antes-alisamento.webp" alt="Antes: cabelo castanho de costas" width="640" height="800" loading="lazy" decoding="async"></div>
@@ -68,24 +85,23 @@
       </figure>
       <figure class="ba-item" data-reveal>
         <div class="ba ba-video">
-          <video src="video/alisamento.mp4" poster="img/poster-alisamento.webp" muted loop playsinline preload="none" data-auto aria-label="Vídeo do antes e depois de um alisamento no studio"></video>
-        </div>
-      </figure>
-      <figure class="ba-item" data-reveal>
-        <div class="ba ba-video">
           <video src="video/loiro.mp4" poster="img/poster-loiro.webp" muted loop playsinline preload="none" data-auto aria-label="Vídeo da transformação de um loiro no studio"></video>
         </div>
       </figure>
+      <figure class="ba-item"><div class="ba"><img src="img/trabalho-04.webp" alt="Mechas douradas em ondas, de costas" width="720" height="960" loading="lazy" decoding="async"></div></figure>
     </div>
   </div>
 </section>
-<section class="sec alt">
-  <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="eyebrow">Trabalhos do studio</span>
-      <h2>Nossos <em>loiros</em></h2>
+
+<section class="sec alt tela" id="trabalhos">
+  <div class="wrap col">
+    <div class="sec-head row">
+      <div>
+        <h2>Nossos <em>loiros</em></h2>
+        <p class="lead">Trabalhos de loiro feitos no studio, do iluminado ao platinado.</p>
+      </div>
     </div>
-    <div class="gallery" data-reveal>
+    <div class="gallery mural fill">
       <figure><img src="img/loiros-iluminacao.webp" alt="Cabelo castanho com iluminação em mechas douradas, de costas" width="480" height="640" loading="lazy" decoding="async"></figure>
       <figure><img src="img/loiros-truck.webp" alt="Cabelo loiro ondulado com raiz esfumada e contorno em topo, de costas" width="480" height="640" loading="lazy" decoding="async"></figure>
       <figure><img src="img/loiros-blonde-hair.webp" alt="Cabelo loiro com raiz esfumada, ondulado, de costas" width="480" height="640" loading="lazy" decoding="async"></figure>
@@ -93,33 +109,27 @@
       <figure><img src="img/trabalho-01.webp" alt="Loiro ondulado com raiz esfumada, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
       <figure><img src="img/trabalho-02.webp" alt="Loiro platinado liso, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
       <figure><img src="img/trabalho-03.webp" alt="Loiro iluminado ondulado, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
-      <figure><img src="img/trabalho-04.webp" alt="Mechas douradas em ondas, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
       <figure><img src="img/trabalho-05.webp" alt="Morena iluminada, cabelo liso, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
       <figure><img src="img/trabalho-06.webp" alt="Loiro claro com franja lateral, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
       <figure><img src="img/trabalho-07.webp" alt="Loiro bege liso, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
       <figure><img src="img/trabalho-08.webp" alt="Loiro dourado liso, de costas" width="720" height="960" loading="lazy" decoding="async"></figure>
-    </div>
-    <p class="muted" style="margin-top:28px" data-reveal>Unhas, cílios e sobrancelhas: veja os trabalhos mais recentes no nosso Instagram.</p>
-    <div class="btns" style="margin-top:18px" data-reveal><a class="btn btn-line" href="https://instagram.com/cris.limastudio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg> Ver mais no Instagram</a></div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="cta" data-reveal>
-      <h2>Seu próximo horário está a <em>um toque</em></h2>
-      <p>Escolha o serviço, veja os horários livres e confirme. Simples assim.</p>
-      <div class="btns">
-        <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
-        <a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Falar no WhatsApp</a>
-      </div>
+      <a class="ig" href="https://instagram.com/cris.limastudio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg><b>Unhas, cílios e sobrancelhas</b><span>Os trabalhos mais recentes estão no Instagram</span></a>
     </div>
   </div>
 </section>
 </main>
 <footer class="foot closing">
   <div class="wrap">
-    <div>
+    <div class="close">
+      <h2>Seu próximo horário está a <em>um toque</em></h2>
+      <p>Escolha o serviço, veja os horários livres e confirme. Simples assim.</p>
+      <div class="btns">
+        <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+        <a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>
       <a class="brand" href="index.html"><img src="img/logo.webp" alt="" width="56" height="56" loading="lazy"><span><b>Cris Lima</b><small>STUDIO</small></span></a>
       <p class="tagline">Onde sua beleza se torna digna de princesa.</p>
     </div>
@@ -136,7 +146,7 @@
     <div>
       <h3>Agende</h3>
       <ul>
-        <li><a href="agendar.html">Agendamento online</a></li>
+        <li><a href="agendar.html#agenda">Agendamento online</a></li>
         <li><a href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener">WhatsApp (41) 99549-9770</a></li>
         <li><a href="agendar.html#politica">Política de agendamento</a></li>
       </ul>
@@ -149,10 +159,11 @@
       </ul>
     </div>
     <div class="legal"><span>© <span data-year>2026</span> Cris Lima Studio</span><span>Cabelo, unhas e beleza no Cajuru</span></div>
+    </div>
   </div>
 </footer>
 <div class="mbar">
-  <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+  <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
   <a class="btn btn-wa" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg></a>
 </div>
 <script src="js/dados.js"></script>

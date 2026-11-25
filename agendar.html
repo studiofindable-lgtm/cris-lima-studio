@@ -25,7 +25,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
-<body>
+<body class="telas sem-barra">
 <header class="top nav">
   <a class="sr" href="#conteudo">Pular para o conteúdo</a>
   <div class="wrap">
@@ -40,29 +40,39 @@
       <a href="galeria.html">Antes & Depois</a>
       <a href="studio.html">O Studio</a>
       <a href="blog.html">Blog</a>
-      <a class="btn btn-gold" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
+      <a class="btn btn-gold" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar horário</a>
     </nav>
-    <a class="btn btn-gold btn-sm btn-agendar" href="agendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar</a>
+    <a class="btn btn-gold btn-sm btn-agendar" href="agendar.html#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar</a>
     <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><i></i></button>
   </div>
 </header>
 <main id="conteudo">
-<section class="page-hero" data-enter>
+<!-- tasteskill: place · uma seção por tela (1440x900): abertura 1 · agenda 1 · política 1 · fechamento (rodapé) 1 -->
+<section class="hero" data-enter>
   <div class="wrap">
-    <p class="crumbs"><a href="index.html">Início</a> / Agendar</p>
-    <span class="eyebrow">Agendamento</span>
-    <h1>Agende em <em>menos de 1 minuto</em></h1>
-    <p class="lead">Escolha como prefere agendar. Pela agenda online você vê só os horários em que o seu atendimento cabe inteiro.</p>
+    <div>
+      <p class="crumbs"><a href="index.html">Início</a> / Agendar</p>
+      <span class="eyebrow">Agendamento</span>
+      <h1>Agende em <em>menos de 1 minuto</em></h1>
+      
+      <p class="lead">Escolha os serviços, o dia e o horário. A agenda mostra só os horários em que o seu atendimento cabe inteiro, e a sua solicitação chega pronta no nosso WhatsApp.</p>
+      
+      <div class="btns"><a class="btn btn-gold" href="#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar agora</a>
+        <a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Prefiro o WhatsApp</a></div>
+    </div>
+    <div class="hero-art">
+      <div class="arch"><img data-enter-media src="img/studio-espera.webp" alt="Sala de espera do studio, com poltronas rosa junto à janela" width="576" height="1024" fetchpriority="high"></div>
+    </div>
   </div>
 </section>
-<section class="sec" style="padding-top:48px">
-  <div class="wrap">
-    <div class="ways">
-      <div class="way main"><span class="eyebrow" style="margin:0">Recomendado</span><h3>Agendamento online</h3><p>Escolha os serviços, o dia e o horário. A sua solicitação chega pronta no nosso WhatsApp.</p><a class="btn btn-dark" href="#agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Agendar agora</a></div>
-      <div class="way"><span class="eyebrow" style="margin:0">Prefere conversar?</span><h3>WhatsApp</h3><p>Fale direto com a gente pelo (41) 99549-9770.</p><a class="btn btn-line" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Abrir WhatsApp</a></div>
-    </div>
 
-    <div class="bk" id="agenda">
+<section class="sec tela" id="agenda">
+  <div class="wrap col">
+    <div class="sec-head row">
+      <h2>Agenda <em>online</em></h2>
+      <p class="lead">Três passos: os serviços, a profissional e o horário, e a confirmação.</p>
+    </div>
+    <div class="bk fill">
       <div id="bk">
         <ol class="bk-steps">
           <li data-step="1"><b>1</b><span>Serviços</span></li>
@@ -113,26 +123,36 @@
     </div>
   </div>
 </section>
-<section class="sec alt" id="politica">
-  <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="eyebrow">Nossos combinados</span>
+
+<section class="sec alt tela" id="politica">
+  <div class="wrap split cat-tela">
+    <div class="col-fill">
       <h2>Política de <em>agendamento</em></h2>
-      <p class="lead">Para cuidar de você com carinho e manter a agenda organizada.</p>
+      <p class="cat-desc">Para cuidar de você com carinho e manter a agenda organizada.</p>
+      <p class="note">Obrigada por respeitar nosso tempo e o seu! 💕</p>
+      <figure class="foto-fill"><img src="img/studio-entrada.webp" alt="Entrada do studio, com poltronas rosa e tapete junto à porta de vidro" width="576" height="1024" loading="lazy" decoding="async"></figure>
     </div>
     <dl class="policy">
-      <div data-reveal><dt>Pontualidade</dt><dd>Chegue no horário agendado. Em caso de atraso, avise nossa equipe. Conforme o tempo disponível, poderá ser necessário adaptar ou reagendar o atendimento.</dd></div>
-      <div data-reveal><dt>Cancelamentos e remarcações</dt><dd>Se precisar mudar seus planos, avise com pelo menos 24 horas de antecedência. Assim podemos disponibilizar o horário para outra cliente.</dd></div>
-      <div data-reveal><dt>Reserva do horário</dt><dd>Para garantir seu agendamento, é necessário pagar 30% do valor do procedimento. Esse valor vira bônus para você usar no salão. As condições de cancelamento e remarcação são informadas antes do pagamento.</dd></div>
-      <div data-reveal><dt>Acompanhantes</dt><dd>Nossa recepção é pequena e, para garantir o conforto de todas as clientes, não recebemos acompanhantes. Pedimos, com todo carinho, que venha sozinha ao seu horário.</dd></div>
+      <div><dt>Pontualidade</dt><dd>Chegue no horário agendado. Em caso de atraso, avise nossa equipe. Conforme o tempo disponível, poderá ser necessário adaptar ou reagendar o atendimento.</dd></div>
+      <div><dt>Cancelamentos e remarcações</dt><dd>Se precisar mudar seus planos, avise com pelo menos 24 horas de antecedência. Assim podemos disponibilizar o horário para outra cliente.</dd></div>
+      <div><dt>Reserva do horário</dt><dd>Para garantir seu agendamento, é necessário pagar 30% do valor do procedimento. Esse valor vira bônus para você usar no salão. As condições de cancelamento e remarcação são informadas antes do pagamento.</dd></div>
+      <div><dt>Acompanhantes</dt><dd>Nossa recepção é pequena e, para garantir o conforto de todas as clientes, não recebemos acompanhantes. Pedimos, com todo carinho, que venha sozinha ao seu horário.</dd></div>
     </dl>
-    <p class="note" style="margin-top:24px">Obrigada por respeitar nosso tempo e o seu! 💕</p>
   </div>
 </section>
 </main>
 <footer class="foot closing">
   <div class="wrap">
-    <div>
+    <div class="close">
+      <h2>Prefere <em>conversar</em>?</h2>
+      <p>Fale direto com a gente pelo WhatsApp (41) 99549-9770. A gente ajuda a escolher o serviço e o melhor horário.</p>
+      <div class="btns">
+        <a class="btn btn-gold" href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5A8.4 8.4 0 1 1 20.5 11.6z"/><circle cx="8.3" cy="11.8" r=".6" fill="currentColor"/><circle cx="12" cy="11.8" r=".6" fill="currentColor"/><circle cx="15.7" cy="11.8" r=".6" fill="currentColor"/></svg> Abrir WhatsApp</a>
+        <a class="btn btn-line" href="servicos.html">Ver serviços e preços</a>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>
       <a class="brand" href="index.html"><img src="img/logo.webp" alt="" width="56" height="56" loading="lazy"><span><b>Cris Lima</b><small>STUDIO</small></span></a>
       <p class="tagline">Onde sua beleza se torna digna de princesa.</p>
     </div>
@@ -149,7 +169,7 @@
     <div>
       <h3>Agende</h3>
       <ul>
-        <li><a href="agendar.html">Agendamento online</a></li>
+        <li><a href="agendar.html#agenda">Agendamento online</a></li>
         <li><a href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener">WhatsApp (41) 99549-9770</a></li>
         <li><a href="agendar.html#politica">Política de agendamento</a></li>
       </ul>
@@ -162,6 +182,7 @@
       </ul>
     </div>
     <div class="legal"><span>© <span data-year>2026</span> Cris Lima Studio</span><span>Cabelo, unhas e beleza no Cajuru</span></div>
+    </div>
   </div>
 </footer>
 
