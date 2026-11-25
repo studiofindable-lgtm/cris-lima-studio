@@ -21,11 +21,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
 <script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
-<a class="sr" href="#conteudo">Pular para o conteúdo</a>
-<header class="top">
+<header class="top nav">
+  <a class="sr" href="#conteudo">Pular para o conteúdo</a>
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Cris Lima Studio, página inicial">
       <img src="img/logo.webp" alt="" width="46" height="46">
@@ -45,7 +47,7 @@
   </div>
 </header>
 <main id="conteudo">
-<section class="page-hero">
+<section class="page-hero" data-enter>
   <div class="wrap">
     <p class="crumbs"><a href="index.html">Início</a> / Agendar</p>
     <span class="eyebrow">Agendamento</span>
@@ -128,14 +130,14 @@
   </div>
 </section>
 </main>
-<footer class="foot">
+<footer class="foot closing">
   <div class="wrap">
     <div>
       <a class="brand" href="index.html"><img src="img/logo.webp" alt="" width="56" height="56" loading="lazy"><span><b>Cris Lima</b><small>STUDIO</small></span></a>
       <p class="tagline">Onde sua beleza se torna digna de princesa.</p>
     </div>
     <div>
-      <h4>Navegue</h4>
+      <h3>Navegue</h3>
       <ul>
         <li><a href="loiros.html">Loiros</a></li>
         <li><a href="servicos.html">Serviços e preços</a></li>
@@ -145,7 +147,7 @@
       </ul>
     </div>
     <div>
-      <h4>Agende</h4>
+      <h3>Agende</h3>
       <ul>
         <li><a href="agendar.html">Agendamento online</a></li>
         <li><a href="https://wa.me/5541995499770?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20Cris%20Lima%20Studio." target="_blank" rel="noopener">WhatsApp (41) 99549-9770</a></li>
@@ -153,7 +155,7 @@
       </ul>
     </div>
     <div>
-      <h4>Visite</h4>
+      <h3>Visite</h3>
       <ul>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Rua%20Roraima%2C%201557%2C%20Cajuru%2C%20Curitiba%20-%20PR" target="_blank" rel="noopener">Rua Roraima, 1557<br>Cajuru, Curitiba – PR</a></li>
         <li><a href="https://instagram.com/cris.limastudio" target="_blank" rel="noopener">@cris.limastudio</a></li>
@@ -166,5 +168,6 @@
 <script src="js/dados.js"></script>
 <script src="js/site.js"></script>
 <script src="js/agendar.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
 </body>
 </html>

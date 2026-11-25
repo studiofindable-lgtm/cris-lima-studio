@@ -43,15 +43,30 @@ var DADOS = {
     chave: "sb_publishable_nxx5C-G5-c0tZgLUgmh3dQ_-oehQuhw"
   },
 
-  /* Profissionais. Cada uma tem a própria agenda e atende as categorias
-     listadas. Na agenda online a cliente escolhe a profissional ou
-     "Sem preferência" (o sistema escolhe quem estiver livre).
+  /* Profissionais. Cada uma tem a própria agenda e atende:
+       categorias: categorias inteiras (todos os serviços da categoria)
+       servicos:   serviços avulsos de outras categorias (pelo "id" do serviço)
+     Na agenda online a cliente escolhe a profissional ou "Sem preferência"
+     (o sistema escolhe quem estiver livre).
+     cargo = linha curta que aparece na agenda; bio = texto da página O Studio.
      O "id" precisa existir também na tabela cl_agendas do Supabase.
-     ⚠ TROCAR pelos nomes reais da equipe (e, se quiser, a foto em img/). */
+     Foto (opcional): foto: "img/nome.webp".
+     ⚠ "prof2" é provisória até chegar o perfil da Aline. */
   profissionais: [
-    { id: "cris",  nome: "Cris Lima", cargo: "Especialista em loiros", categorias: ["loiros", "hair"] },
-    { id: "prof2", nome: "Profissional de unhas", cargo: "Nail designer", categorias: ["nails"] },
-    { id: "prof3", nome: "Profissional de beleza", cargo: "Cílios, sobrancelhas e micro", categorias: ["lash", "beauty", "micro"] }
+    { id: "cris", nome: "Cris Lima", cargo: "Fundadora · loiros, alisamentos e tratamentos",
+      bio: "Fundadora do studio. Especialista em loiros, alisamentos e tratamentos, colorimetrista, visagista e educadora capilar.",
+      categorias: ["loiros", "hair"] },
+    { id: "drika", nome: "Drika", cargo: "Corte, alisamentos e mechas",
+      bio: "Especialista em corte, alisamentos e mechas.",
+      servicos: ["corte", "progressiva-formol", "progressiva-sem-formol", "botox-capilar", "mechas-rec", "mechas-botox"] },
+    { id: "gabi", nome: "Gabi", cargo: "Sobrancelhas, maquiagem, cílios e alisamentos",
+      bio: "Especialista em sobrancelhas, maquiadora, lash designer e alisamentos.",
+      categorias: ["beauty", "lash"],
+      servicos: ["progressiva-formol", "progressiva-sem-formol", "botox-capilar"] },
+    { id: "letticcia", nome: "Letticcia", cargo: "Micropigmentação",
+      bio: "Especialista em micropigmentação.",
+      categorias: ["micro"] },
+    { id: "prof2", nome: "Profissional de unhas", cargo: "Nail designer", categorias: ["nails"] }
   ],
 
   categorias: [

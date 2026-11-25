@@ -22,9 +22,11 @@ create table public.cl_agendas (
   nome text not null
 );
 insert into public.cl_agendas (id, nome) values
-  ('cris',  'Cris Lima'),
-  ('prof2', 'Profissional de unhas'),
-  ('prof3', 'Profissional de cílios e sobrancelhas');
+  ('cris',      'Cris Lima'),
+  ('drika',     'Drika'),
+  ('gabi',      'Gabi'),
+  ('letticcia', 'Letticcia'),
+  ('prof2',     'Profissional de unhas');  -- provisória até o perfil da Aline
 
 create table public.cl_agendamentos (
   id         uuid primary key default gen_random_uuid(),

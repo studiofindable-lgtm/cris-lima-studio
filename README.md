@@ -26,6 +26,7 @@ Site completo do **Cris Lima Studio** (especialista em loiros, cabelo, unhas, c�
 - **Fotos:** ficam em `img/` (em `.webp`): `trabalho-*` são os trabalhos da galeria, `studio-*` são as fotos do espaço (tiradas do vídeo de tour) e `antes-*` / `depois-*` formam o antes e depois.
 - **Vídeos:** ficam em `video/` (`.mp4` sem som). Eles só tocam quando aparecem na tela, para não gastar a internet de quem abre o site pelo celular.
 - **Visual (cores e fontes):** `css/style.css`.
+- **Movimento:** `assets/motion/` traz a entrada do topo e os efeitos ao passar o mouse (camada da taste-skill, licença MIT em `assets/motion/LICENSE`). Não edite esses dois arquivos; ajuste o visual em `css/style.css`.
 
 No GitHub, dá para editar direto pelo navegador: abra o arquivo, clique no lápis (✏️) e salve com **Commit changes**. O site se atualiza em cerca de 1 minuto.
 
@@ -41,7 +42,7 @@ Os links das páginas de serviço já chegam com o serviço marcado, por exemplo
 **Profissionais:** cada profissional tem a própria agenda e atende as categorias listadas em `profissionais` no `js/dados.js`. Na agenda online a cliente escolhe a profissional ou **Sem preferência**. Nesse caso o sistema mostra todos os horários em que alguma profissional da área está livre e reserva com a primeira disponível. O painel mostra quem vai atender e avisa quando a cliente não teve preferência.
 
 Para **adicionar ou renomear uma profissional**:
-1. Edite a lista `profissionais` em `js/dados.js` (nome, cargo, categorias e, se quiser, `foto: "img/nome.webp"`).
+1. Edite a lista `profissionais` em `js/dados.js`: nome, cargo (linha curta da agenda), bio (texto da página O Studio), `categorias` (categorias inteiras), `servicos` (serviços avulsos de outra categoria, pelo id) e, se quiser, `foto: "img/nome.webp"`.
 2. Cadastre o mesmo `id` no banco, no SQL Editor:
    ```sql
    insert into public.cl_agendas (id, nome) values ('ana', 'Ana');

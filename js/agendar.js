@@ -13,12 +13,15 @@
   var SB = D.supabase && D.supabase.url && D.supabase.chave ? D.supabase : null;
 
   var todos = CL.servicos();
-  var porId = {}, profsDaCat = {}, PROF = {};
-  (D.profissionais || []).forEach(function (p) {
-    PROF[p.id] = p;
-    p.categorias.forEach(function (c) { (profsDaCat[c] = profsDaCat[c] || []).push(p.id); });
+  var porId = {}, PROF = {}, PROFS = D.profissionais || [];
+  PROFS.forEach(function (p) { PROF[p.id] = p; });
+  // cada profissional atende categorias inteiras (categorias) e/ou serviços avulsos (servicos)
+  todos.forEach(function (s) {
+    s.profs = PROFS.filter(function (p) {
+      return (p.categorias || []).indexOf(s.cat) !== -1 || (p.servicos || []).indexOf(s.id) !== -1;
+    }).map(function (p) { return p.id; });
+    porId[s.id] = s;
   });
-  todos.forEach(function (s) { s.profs = profsDaCat[s.cat] || []; porId[s.id] = s; });
 
   var DIAS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
   var DIAS_LONGO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
@@ -66,9 +69,10 @@
     var gs = [], idx = {};
     st.sel.forEach(function (id) {
       var s = porId[id], k = s.profs.join(',');
-      if (!(k in idx)) { idx[k] = gs.length; gs.push({ key: k, profs: s.profs, cats: [] }); }
+      if (!(k in idx)) { idx[k] = gs.length; gs.push({ key: k, profs: s.profs, cats: [], nomes: [] }); }
       var g = gs[idx[k]];
       if (g.cats.indexOf(s.catNome) === -1) g.cats.push(s.catNome);
+      g.nomes.push(s.nome);
     });
     gs.forEach(function (g) {
       if (!(g.key in st.pref)) st.pref[g.key] = (qp && g.profs.indexOf(qp) !== -1) ? qp : '*';
@@ -94,6 +98,9 @@
     var out = [];
     Object.keys(st.atrib || {}).forEach(function (k) { if (out.indexOf(st.atrib[k]) === -1) out.push(st.atrib[k]); });
     return out;
+  }
+  function lista(xs) {
+    return xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' e ' + xs[xs.length - 1];
   }
   function iniciais(n) {
     return n.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w[0].toUpperCase(); }).join('');
@@ -252,7 +259,7 @@
     var gs = grupos();
     gs.forEach(function (g) {
       var wrap = el('div', 'bk-pro-grp');
-      wrap.appendChild(el('h4', null, gs.length > 1 ? 'Profissional para ' + g.cats.join(' e ') : 'Com quem você quer agendar?'));
+      wrap.appendChild(el('h4', null, gs.length > 1 ? 'Profissional para ' + lista(g.nomes) : 'Com quem você quer agendar?'));
       var row = el('div', 'bk-pro-row');
       row.setAttribute('role', 'group');
       var opcoes = [{ id: '*', nome: 'Sem preferência', cargo: 'Primeira profissional livre' }]
