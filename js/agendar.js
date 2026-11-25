@@ -350,7 +350,8 @@
       ['Data', fmtData(st.dia)],
       ['Horário', fmtHora(st.hora) + ' às ' + fmtHora(st.hora + t.min)],
       ['Duração estimada', CL.duracao(t.min)],
-      ['Valor estimado', (t.aPartir ? 'a partir de ' : '') + CL.preco(t.preco)]
+      ['Valor estimado', (t.aPartir ? 'a partir de ' : '') + CL.preco(t.preco)],
+      ['Reserva de 30%', (t.aPartir ? 'a partir de ' : '') + CL.preco(Math.round(t.preco * 0.3)) + ' (vira bônus no salão)']
     ];
   }
   function renderReview() {
