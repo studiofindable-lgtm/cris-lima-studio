@@ -2,7 +2,7 @@
 
 Site completo do **Cris Lima Studio** (especialista em loiros, cabelo, unhas, cílios, sobrancelhas e micropigmentação), na Rua Roraima, 1557, Cajuru, em Curitiba.
 
-**Site no ar:** https://studiofindable-lgtm.github.io/cris-lima-studio/
+**Site no ar:** https://crislimastudio.com.br (o endereço do GitHub Pages, https://studiofindable-lgtm.github.io/cris-lima-studio/, continua funcionando)
 
 ## Páginas
 
@@ -73,4 +73,4 @@ Quem entra no painel sem estar nessa lista vê a mensagem "Usuário sem permiss�
 
 ## Domínio próprio
 
-Em **Settings → Pages → Custom domain**, informe o domínio (por exemplo, `crislimastudio.com.br`). Depois, troque `https://studiofindable-lgtm.github.io/cris-lima-studio/` pelo novo endereço nos arquivos `.html`, no `sitemap.xml` e no `robots.txt`.
+O endereço oficial é **https://crislimastudio.com.br**. Ele é servido pelo Netlify, que publica sozinho a cada commit na branch `main`, e o DNS do domínio fica no Netlify. Todas as páginas, o `sitemap.xml` e o `robots.txt` apontam esse domínio como endereço principal (tag canônica), para o Google não tratar a cópia do github.io como o site original. Se um dia o endereço mudar, troque o domínio nos arquivos `.html`, no `sitemap.xml` e no `robots.txt`.

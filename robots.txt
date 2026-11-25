@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://studiofindable-lgtm.github.io/cris-lima-studio/sitemap.xml
+Sitemap: https://crislimastudio.com.br/sitemap.xml

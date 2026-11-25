@@ -87,7 +87,7 @@ p{margin:0 0 1em}
 .top.scrolled{border-color:var(--line);box-shadow:0 8px 30px -24px rgba(80,40,40,.5)}
 .top .wrap{height:100%;display:flex;align-items:center;gap:24px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
-.brand img{width:46px;height:46px;object-fit:contain}
+.brand img{width:56px;height:56px;object-fit:contain}
 .brand span{display:flex;align-items:center;gap:10px;line-height:1;white-space:nowrap}
 .brand b{font:italic 500 25px/1 var(--serif);background:var(--rg-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold-d)}
 .brand small{font:500 10px/1 var(--sans);letter-spacing:.42em;color:var(--gold-d)}
