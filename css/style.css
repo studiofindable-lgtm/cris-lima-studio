@@ -571,7 +571,7 @@ html:has(body.telas){scroll-padding-top:0}
   .telas .foot h3{margin:0 0 4px}
   .telas .foot .brand img{width:44px;height:44px}
   .telas .foot .legal{padding-top:16px;margin-top:0}
-  .telas .foot .legal > span + span{display:none}
+  .telas .foot .legal > span:nth-child(2){display:none}
 }
 
 /* início: topo fixo por cima das seções (a tela inteira é a seção) */
